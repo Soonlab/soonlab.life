@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+/* ============================================================
+   Cell Press graphical-abstract conventions:
+   one single panel, 5.5in square @300dpi (design 825 -> render 1650),
+   Arial >=12pt (>=25px here), flat vector + keyline, tinted ground
+   bled to the edge, one claim, no data items.
+   Vertical budget per panel: stage 0-STAGE_END, take-home band below.
+   ============================================================ */
+:root{
+  --ink:#16211f;
+  --line:#16211f;
+  --good:#0a7d6e;
+  --good-l:#cfe6e0;
+  --bad:#c53e1f;
+  --bad-l:#f4d5cb;
+  --accent:#e8743b;
+  --tissue:#e0a284;
+  --tissue-d:#b0714f;
+  --tumour:#8d2b3f;
+  --blood:#a32020;
+  --neutral:#93a19d;
+  --neutral-l:#dde5e2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#555;font-family:Arial,"Liberation Sans",Helvetica,sans-serif}
+
+.ga{width:825px;height:825px;position:relative;overflow:hidden;color:var(--ink)}
+.ga + .ga{margin-top:30px}
+.ground{position:absolute;inset:0;z-index:0}
+.stage{position:absolute;inset:0;z-index:2}
+
+/* three sizes only */
+.lbl{font-size:25px}      /* 12pt */
+.hdr{font-size:29px;font-weight:bold}
+.sm{font-size:23px}
+
+.band{
+  position:absolute;left:0;right:0;bottom:0;z-index:3;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:22px 40px;text-align:center;background:var(--good);
+}
+.band b{display:block;font-size:32px;line-height:1.2;color:#fff;letter-spacing:-.01em}
+.band i{display:block;font-style:normal;font-size:23px;color:rgba(255,255,255,.86);margin-top:8px}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ GA1
+     one claim: models grown from a patient keep that tumour's genome
+     flow: patient -> two culture routes -> biobank -> match
+     stage ends y=636, band 130 -->
+<section class="ga" id="ga1">
+  <svg class="ground" viewBox="0 0 825 825" preserveAspectRatio="none">
+    <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef4f5"/><stop offset="1" stop-color="#dee9e7"/></linearGradient></defs>
+    <rect width="825" height="825" fill="url(#g1)"/>
+  </svg>
+
+  <svg class="stage" viewBox="0 0 825 825">
+    <defs>
+      <!-- featureless front-facing silhouette, colon + rectal tumour -->
+      <g id="patient">
+        <circle cx="50" cy="16" r="12.5" fill="#fff"/>
+        <path fill="#fff" d="M50 31c-12 0-19 6-21.5 14L19 72c-1.4 4.6 4.4 6.8 6.4 2.6L32 60v24l-4.6 39c-.6 4.8 6.4 5.8 7.4 1.2L43 88h14l8.2 36.2c1 4.6 8 3.6 7.4-1.2L68 84V60l6.6 14.6c2 4.2 7.8 2 6.4-2.6L71.5 45C69 37 62 31 50 31z"/>
+        <g fill="var(--tissue)" stroke="var(--tissue-d)" stroke-width="2.2">
+          <rect x="34" y="55" width="32" height="9" rx="4.5"/>
+          <rect x="34" y="55" width="9" height="19" rx="4.5"/>
+          <rect x="57" y="55" width="9" height="19" rx="4.5"/>
+          <rect x="45.5" y="70" width="9" height="16" rx="4.5"/>
+        </g>
+        <g fill="var(--tumour)" stroke="none">
+          <circle cx="50" cy="80" r="4.4"/><circle cx="54" cy="77.5" r="3.4"/><circle cx="53.4" cy="83.5" r="3"/>
+        </g>
+      </g>
+      <marker id="ah" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 1l10 5-10 5z" fill="var(--line)"/>
+      </marker>
+    </defs>
+
+    <g stroke="var(--line)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+
+      <!-- 1. patient, centred: the figure is the hub -->
+      <use href="#patient" transform="translate(348,26) scale(1.16)"/>
+      <text class="lbl" x="406" y="212" text-anchor="middle" stroke="none" fill="var(--ink)">Patients with cancer</text>
+
+      <!-- branch down-left and down-right: one unbroken path to both routes -->
+      <g fill="none" stroke="var(--line)" stroke-width="4">
+        <path d="M406 224v22H244v24" marker-end="url(#ah)"/>
+        <path d="M406 224v22h162v24" marker-end="url(#ah)"/>
+      </g>
+
+      <!-- 2a. organoids in a dish -->
+      <g transform="translate(180,284)">
+        <ellipse cx="62" cy="30" rx="60" ry="20" fill="#fff"/>
+        <path fill="#fff" d="M2 30v11c0 11.1 26.9 20 60 20s60-8.9 60-20V30z"/>
+        <ellipse cx="62" cy="30" rx="49" ry="15" fill="var(--good-l)" stroke="none"/>
+        <g fill="#fff"><circle cx="42" cy="28" r="10"/><circle cx="70" cy="24" r="8"/>
+          <circle cx="80" cy="37" r="9"/><circle cx="54" cy="39" r="6.6"/></g>
+        <g fill="none" stroke="var(--good)" stroke-width="2.4">
+          <circle cx="42" cy="28" r="4.2"/><circle cx="70" cy="24" r="3.4"/>
+          <circle cx="80" cy="37" r="3.8"/><circle cx="54" cy="39" r="2.8"/></g>
+      </g>
+      <text class="lbl" x="242" y="392" text-anchor="middle" stroke="none" fill="var(--ink)">Organoids</text>
+
+      <!-- 2b. cell lines in a flask -->
+      <g transform="translate(524,278)">
+        <path fill="#fff" d="M28 4h24v24l36 48c4.6 6.2 0 14.4-7.2 14.4H-.8C-8 90.4-12.6 82.2-8 76l36-48z"/>
+        <path fill="var(--good-l)" stroke="none" d="M13 62l-12.5 17c-2.6 3.6 0 8 4.5 8h68c4.5 0 7.1-4.4 4.5-8L65 62z"/>
+        <g fill="var(--good)" stroke="none" opacity=".75">
+          <ellipse cx="22" cy="77" rx="5.4" ry="3" transform="rotate(-18 22 77)"/>
+          <ellipse cx="41" cy="72" rx="5" ry="2.8" transform="rotate(12 41 72)"/>
+          <ellipse cx="57" cy="78" rx="5.2" ry="2.9" transform="rotate(-8 57 78)"/>
+          <ellipse cx="34" cy="81" rx="4.6" ry="2.6" transform="rotate(22 34 81)"/></g>
+      </g>
+      <text class="lbl" x="564" y="392" text-anchor="middle" stroke="none" fill="var(--ink)">Cell lines</text>
+
+      <!-- 3. both routes converge into the biobank -->
+      <g fill="none" stroke="var(--line)" stroke-width="4">
+        <path d="M242 408v22h164"/><path d="M564 408v22H406v10" marker-end="url(#ah)"/>
+      </g>
+
+      <g transform="translate(298,448)">
+        <g fill="#fff">
+          <rect x="0" y="14" width="24" height="54" rx="6"/><rect x="32" y="14" width="24" height="54" rx="6"/>
+          <rect x="64" y="14" width="24" height="54" rx="6"/><rect x="96" y="14" width="24" height="54" rx="6"/>
+          <rect x="128" y="14" width="24" height="54" rx="6"/><rect x="160" y="14" width="24" height="54" rx="6"/>
+          <rect x="192" y="14" width="24" height="54" rx="6"/>
+        </g>
+        <g fill="var(--good)" stroke="none" opacity=".85">
+          <rect x="4" y="44" width="16" height="20" rx="3"/><rect x="36" y="44" width="16" height="20" rx="3"/>
+          <rect x="68" y="44" width="16" height="20" rx="3"/><rect x="100" y="44" width="16" height="20" rx="3"/>
+          <rect x="132" y="44" width="16" height="20" rx="3"/><rect x="164" y="44" width="16" height="20" rx="3"/>
+          <rect x="196" y="44" width="16" height="20" rx="3"/>
+        </g>
+        <g fill="var(--neutral-l)">
+          <rect x="0" y="4" width="24" height="12" rx="3"/><rect x="32" y="4" width="24" height="12" rx="3"/>
+          <rect x="64" y="4" width="24" height="12" rx="3"/><rect x="96" y="4" width="24" height="12" rx="3"/>
+          <rect x="128" y="4" width="24" height="12" rx="3"/><rect x="160" y="4" width="24" height="12" rx="3"/>
+          <rect x="192" y="4" width="24" height="12" rx="3"/>
+        </g>
+      </g>
+      <text class="lbl" x="406" y="550" text-anchor="middle" stroke="none" fill="var(--ink)">Biobanked and shared</text>
+
+      <g transform="translate(58,578)">
+        <rect x="0" y="0" width="212" height="104" rx="12" fill="#fff"/>
+        <text class="sm" x="106" y="28" text-anchor="middle" stroke="none" fill="var(--ink)">Original tumour</text>
+        <g stroke="none">
+          <rect x="22" y="46" width="22" height="18" fill="var(--bad)"/><rect x="49" y="46" width="22" height="18" fill="var(--neutral-l)"/>
+          <rect x="76" y="46" width="22" height="18" fill="var(--good)"/><rect x="103" y="46" width="22" height="18" fill="var(--neutral-l)"/>
+          <rect x="130" y="46" width="22" height="18" fill="var(--bad)"/><rect x="157" y="46" width="22" height="18" fill="var(--good)"/>
+          <rect x="22" y="68" width="22" height="18" fill="var(--neutral-l)"/><rect x="49" y="68" width="22" height="18" fill="var(--good)"/>
+          <rect x="76" y="68" width="22" height="18" fill="var(--neutral-l)"/><rect x="103" y="68" width="22" height="18" fill="var(--bad)"/>
+          <rect x="130" y="68" width="22" height="18" fill="var(--neutral-l)"/><rect x="157" y="68" width="22" height="18" fill="var(--neutral-l)"/>
+        </g>
+      </g>
+      <g transform="translate(556,578)">
+        <rect x="0" y="0" width="212" height="104" rx="12" fill="#fff"/>
+        <text class="sm" x="106" y="28" text-anchor="middle" stroke="none" fill="var(--ink)">Model</text>
+        <g stroke="none">
+          <rect x="22" y="46" width="22" height="18" fill="var(--bad)"/><rect x="49" y="46" width="22" height="18" fill="var(--neutral-l)"/>
+          <rect x="76" y="46" width="22" height="18" fill="var(--good)"/><rect x="103" y="46" width="22" height="18" fill="var(--neutral-l)"/>
+          <rect x="130" y="46" width="22" height="18" fill="var(--bad)"/><rect x="157" y="46" width="22" height="18" fill="var(--good)"/>
+          <rect x="22" y="68" width="22" height="18" fill="var(--neutral-l)"/><rect x="49" y="68" width="22" height="18" fill="var(--good)"/>
+          <rect x="76" y="68" width="22" height="18" fill="var(--neutral-l)"/><rect x="103" y="68" width="22" height="18" fill="var(--bad)"/>
+          <rect x="130" y="68" width="22" height="18" fill="var(--neutral-l)"/><rect x="157" y="68" width="22" height="18" fill="var(--neutral-l)"/>
+        </g>
+      </g>
+      <!-- equivalence, not a directed arrow -->
+      <g stroke="var(--accent)" stroke-width="6"><path d="M298 620h228"/><path d="M298 644h228"/></g>
+    </g>
+  </svg>
+
+  <div class="band" style="padding:16px 40px"><b>Living models that keep the tumour's own genome</b></div>
+</section>
+
+<!-- ============================================================ GA2
+     one claim: the change under treatment separates response
+     device: same cohort unsorted (baseline) vs sorted (paired)
+     stage ends y=650, band 130 -->
+<section class="ga" id="ga2">
+  <svg class="ground" viewBox="0 0 825 825" preserveAspectRatio="none">
+    <defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7f0ea"/><stop offset="1" stop-color="#ebe3ef"/></linearGradient></defs>
+    <rect width="825" height="825" fill="url(#g2)"/>
+  </svg>
+
+  <svg class="stage" viewBox="0 0 825 825">
+    <defs>
+      <g id="tube">
+        <rect x="0" y="0" width="26" height="13" rx="4" fill="var(--neutral-l)"/>
+        <path fill="#fff" d="M2 13h22v33a11 11 0 0 1-22 0z"/>
+        <path fill="var(--tumour)" stroke="none" d="M2 31h22v15a11 11 0 0 1-22 0z"/>
+      </g>
+      <g id="person"><circle cx="14" cy="10" r="9"/><path d="M14 22c-9 0-15 6-15 14v25h30V36c0-8-6-14-15-14z"/></g>
+    </defs>
+
+    <g stroke="var(--line)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+
+      <!-- patient -->
+      <use href="#patient" transform="translate(36,40) scale(.86)"/>
+      <text class="lbl" x="79" y="192" text-anchor="middle" stroke="none" fill="var(--ink)">Rectal cancer</text>
+
+      <!-- sample labels sit above the tubes; spine sits below them -->
+      <text class="sm" x="243" y="48" text-anchor="middle" stroke="none" fill="var(--ink)">Before</text>
+      <use href="#tube" x="230" y="58"/>
+      <text class="sm" x="590" y="48" text-anchor="middle" stroke="none" fill="var(--ink)">During</text>
+      <use href="#tube" x="577" y="58"/>
+
+      <!-- treatment spine, clear of every label -->
+      <path d="M168 148h542" fill="none" stroke="var(--neutral)" stroke-width="7"/>
+      <path d="M704 136l20 12-20 12z" fill="var(--neutral)" stroke="none"/>
+
+      <!-- radiation trefoil on the spine -->
+      <g transform="translate(412,148)">
+        <circle cx="0" cy="0" r="25" fill="#fff"/>
+        <g fill="var(--bad)" stroke="none">
+          <g><path d="M0 0L-8 -21.5A23 23 0 0 1 8-21.5Z"/></g>
+          <g transform="rotate(120)"><path d="M0 0L-8 -21.5A23 23 0 0 1 8-21.5Z"/></g>
+          <g transform="rotate(240)"><path d="M0 0L-8 -21.5A23 23 0 0 1 8-21.5Z"/></g>
+          <circle cx="0" cy="0" r="6"/>
+        </g>
+      </g>
+      <text class="lbl" x="412" y="206" text-anchor="middle" stroke="none" fill="var(--ink)">Chemoradiation</text>
+
+      <!-- fork down to the two readings -->
+      <path d="M213 168v82" fill="none" stroke="var(--neutral)" stroke-width="5"/>
+      <path d="M205 248l8 14 8-14z" fill="var(--neutral)" stroke="none"/>
+      <path d="M613 168v82" fill="none" stroke="var(--good)" stroke-width="6"/>
+      <path d="M605 248l8 14 8-14z" fill="var(--good)" stroke="none"/>
+
+      <!-- LEFT: baseline alone -> cohort stays mixed -->
+      <rect x="54" y="276" width="318" height="362" rx="18" fill="#fff" opacity=".66" stroke="none"/>
+      <text class="hdr" x="213" y="322" text-anchor="middle" stroke="none" fill="var(--neutral)">Before only</text>
+      <g transform="translate(96,366)">
+        <g fill="var(--bad)" stroke="none">
+          <use href="#person" x="0" y="0"/><use href="#person" x="88" y="0"/>
+          <use href="#person" x="66" y="82"/>
+        </g>
+        <g fill="var(--good)" stroke="none">
+          <use href="#person" x="44" y="0"/><use href="#person" x="132" y="0"/>
+          <use href="#person" x="22" y="82"/><use href="#person" x="110" y="82"/>
+        </g>
+      </g>
+      <text class="lbl" x="213" y="608" text-anchor="middle" stroke="none" fill="var(--neutral)">Still mixed</text>
+
+      <!-- RIGHT: paired -> cohort sorts into two rows -->
+      <rect x="452" y="276" width="318" height="362" rx="18" fill="#fff" opacity=".92" stroke="none"/>
+      <text class="hdr" x="611" y="322" text-anchor="middle" stroke="none" fill="var(--good)">Before vs during</text>
+      <g transform="translate(470,366)">
+        <g fill="var(--good)" stroke="none">
+          <use href="#person" x="0" y="0"/><use href="#person" x="46" y="0"/>
+          <use href="#person" x="92" y="0"/><use href="#person" x="138" y="0"/>
+        </g>
+        <g fill="var(--bad)" stroke="none">
+          <use href="#person" x="23" y="82"/><use href="#person" x="69" y="82"/><use href="#person" x="115" y="82"/>
+        </g>
+      </g>
+      <text class="sm" x="752" y="406" text-anchor="end" stroke="none" fill="var(--good)">Responds</text>
+      <text class="sm" x="752" y="488" text-anchor="end" stroke="none" fill="var(--bad)">Resists</text>
+      <text class="lbl" x="611" y="608" text-anchor="middle" stroke="none" fill="var(--good)">Separated</text>
+    </g>
+  </svg>
+
+  <div class="band"><b>Response lives in the change,<br>not in the baseline</b></div>
+</section>
+
+<!-- ============================================================ GA3
+     one claim: three compartments move together at diagnosis
+     association shown as adjacency + shared colour, never a mechanism arrow
+     stage ends y=620, band 168 -->
+<section class="ga" id="ga3">
+  <svg class="ground" viewBox="0 0 825 825" preserveAspectRatio="none">
+    <defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f1e9"/><stop offset="1" stop-color="#e5ecee"/></linearGradient></defs>
+    <rect width="825" height="825" fill="url(#g3)"/>
+  </svg>
+
+  <svg class="stage" viewBox="0 0 825 825">
+    <g stroke="var(--line)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+
+      <text class="hdr" x="412" y="56" text-anchor="middle" stroke="none" fill="var(--ink)">One patient, three measurements at diagnosis</text>
+
+      <!-- patient, centred, with mouth and gut both carrying the same bacteria colour -->
+      <g transform="translate(338,76) scale(1.5)">
+        <circle cx="50" cy="16" r="12.5" fill="#fff"/>
+        <path fill="#fff" d="M50 31c-12 0-19 6-21.5 14L19 72c-1.4 4.6 4.4 6.8 6.4 2.6L32 60v24l-4.6 39c-.6 4.8 6.4 5.8 7.4 1.2L43 88h14l8.2 36.2c1 4.6 8 3.6 7.4-1.2L68 84V60l6.6 14.6c2 4.2 7.8 2 6.4-2.6L71.5 45C69 37 62 31 50 31z"/>
+        <ellipse cx="50" cy="22.5" rx="5.6" ry="3.2" fill="var(--bad-l)" stroke="var(--bad)" stroke-width="1.5"/>
+        <g fill="var(--tissue)" stroke="var(--tissue-d)" stroke-width="2">
+          <rect x="34" y="55" width="32" height="9" rx="4.5"/>
+          <rect x="34" y="55" width="9" height="19" rx="4.5"/>
+          <rect x="57" y="55" width="9" height="19" rx="4.5"/>
+          <rect x="45.5" y="70" width="9" height="16" rx="4.5"/>
+        </g>
+        <g fill="var(--bad)" stroke="none">
+          <rect x="36.5" y="57.5" width="6" height="2.6" rx="1.3" transform="rotate(-14 39 59)"/>
+          <rect x="47" y="57" width="5.6" height="2.5" rx="1.2" transform="rotate(12 50 58)"/>
+          <rect x="57.5" y="58" width="5.8" height="2.6" rx="1.3" transform="rotate(-8 60 59)"/>
+          <rect x="46.5" y="74" width="5.6" height="2.5" rx="1.2" transform="rotate(20 49 75)"/>
+        </g>
+      </g>
+
+      <!-- same colour in mouth and gut = the observed event, no mechanism arrow -->
+      <path d="M412 136v52" fill="none" stroke="var(--bad)" stroke-width="4" stroke-dasharray="9 9"/>
+      <text class="lbl" x="556" y="150" text-anchor="start" stroke="none" fill="var(--bad)">Oral bacteria</text>
+      <text class="lbl" x="556" y="180" text-anchor="start" stroke="none" fill="var(--bad)">found in the gut</text>
+
+      <!-- blood -->
+      <g transform="translate(52,338)">
+        <rect x="0" y="0" width="236" height="196" rx="16" fill="#fff" opacity=".85" stroke="none"/>
+        <text class="lbl" x="118" y="42" text-anchor="middle" stroke="none" fill="var(--ink)">Blood</text>
+        <path d="M20 74h196v54H20z" fill="var(--bad-l)" stroke="var(--blood)" stroke-width="3"/>
+        <g fill="none" stroke="var(--blood)" stroke-width="2.4">
+          <circle cx="44" cy="101" r="10"/><circle cx="192" cy="101" r="10"/></g>
+        <g fill="var(--good)" stroke="var(--line)" stroke-width="2.2">
+          <circle cx="86" cy="99" r="15"/><circle cx="122" cy="106" r="12.5"/><circle cx="157" cy="97" r="13.5"/></g>
+        <text class="sm" x="118" y="172" text-anchor="middle" stroke="none" fill="var(--good)">More myeloid cells</text>
+      </g>
+
+      <!-- plasma -->
+      <g transform="translate(538,338)">
+        <rect x="0" y="0" width="236" height="196" rx="16" fill="#fff" opacity=".85" stroke="none"/>
+        <text class="lbl" x="118" y="42" text-anchor="middle" stroke="none" fill="var(--ink)">Plasma</text>
+        <g transform="translate(40,66)">
+          <rect x="0" y="0" width="32" height="15" rx="5" fill="var(--neutral-l)"/>
+          <path fill="#fff" d="M3 15h26v52a13 13 0 0 1-26 0z"/>
+          <path fill="var(--blood)" stroke="none" d="M3 50h26v17a13 13 0 0 1-26 0z"/>
+        </g>
+        <g stroke="var(--tumour)" stroke-width="5" stroke-linecap="round" fill="none">
+          <path d="M118 84h30"/><path d="M160 112h24"/>
+        </g>
+        <text class="sm" x="118" y="172" text-anchor="middle" stroke="none" fill="var(--tumour)">Less tumour DNA</text>
+      </g>
+
+      <!-- adjacency, both directions, no mechanism -->
+      <g stroke="var(--accent)" stroke-width="5" fill="none"><path d="M306 440h214"/></g>
+      <g fill="var(--accent)" stroke="none">
+        <path d="M304 440l17-9.5v19z"/><path d="M522 440l-17-9.5v19z"/>
+      </g>
+      <text class="sm" x="413" y="418" text-anchor="middle" stroke="none" fill="var(--accent)">occur together</text>
+    </g>
+  </svg>
+
+  <div class="band">
+    <b>Gut bacteria, blood immunity and<br>tumour DNA move together</b>
+    <i>coupled, not a causal chain</i>
+  </div>
+</section>
+
+</body>
+</html>
