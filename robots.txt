@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://soonlab.life/sitemap.xml

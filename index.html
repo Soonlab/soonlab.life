@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Translational Bioinformatics Lab, The University of Suwon. Patient-derived cancer models, treatment-response multi-omics and multi-modal machine learning.">
+<meta name="author" content="Soon-Chan Kim">
+<link rel="canonical" href="https://soonlab.life/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://soonlab.life/">
+<meta property="og:site_name" content="Translational Bioinformatics Lab">
+<meta property="og:title" content="Translational Bioinformatics Lab">
+<meta property="og:description" content="What in a tumor actually carries information about how a patient will respond? Patient-derived models, multi-omics and machine learning at The University of Suwon.">
+<meta property="og:image" content="https://soonlab.life/img/ga_models.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<title>Translational Bioinformatics Lab</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root{
+    --paper:#f5f7f5;
+    --surface:#ffffff;
+    --ink:#121c1a;
+    --body:#27332f;
+    --muted:#5e6d68;
+    --faint:#8b9894;
+    --rule:#dbe3df;
+    --rule-soft:#e7ecea;
+    --teal:#0a7d6e;
+    --teal-soft:#e2f0ec;
+    --coral:#c53e1f;
+    --coral-soft:#fae9e3;
+    --nav-bg:rgba(245,247,245,.92);
+    --shadow:0 1px 2px rgba(18,28,26,.05);
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0b100f; --surface:#111a18; --ink:#e9efec; --body:#c3cfcb;
+      --muted:#8fa09b; --faint:#6d7d79; --rule:#22302c; --rule-soft:#1a2523;
+      --teal:#59c3ab; --teal-soft:#102924; --coral:#ef8163; --coral-soft:#2a1711;
+      --nav-bg:rgba(11,16,15,.92); --shadow:none;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0b100f; --surface:#111a18; --ink:#e9efec; --body:#c3cfcb;
+    --muted:#8fa09b; --faint:#6d7d79; --rule:#22302c; --rule-soft:#1a2523;
+    --teal:#59c3ab; --teal-soft:#102924; --coral:#ef8163; --coral-soft:#2a1711;
+    --nav-bg:rgba(11,16,15,.92); --shadow:none;
+    color-scheme:dark;
+  }
+
+  body{
+    background:var(--paper); color:var(--body);
+    font-family:"Newsreader",Georgia,"Times New Roman",serif;
+    font-size:17px; line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    padding-inline:24px;
+  }
+  .shell{max-width:64rem;margin:0 auto;padding-block:0 100px;}
+  h1,h2,h3,h4{color:var(--ink);text-wrap:balance;margin:0;font-weight:500;}
+  h1{font-size:clamp(2rem,5vw,2.85rem);line-height:1.1;letter-spacing:-.018em;}
+  h2{font-size:clamp(1.5rem,3.4vw,1.85rem);line-height:1.2;letter-spacing:-.012em;}
+  h3{font-size:1.2rem;line-height:1.3;letter-spacing:-.006em;}
+  h4{font-size:1rem;}
+  p{margin:0;}
+  a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:2px;}
+  a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px;}
+  img{display:block;max-width:100%;}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;}
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faint);font-weight:500;
+  }
+
+  /* ---------------- nav ---------------- */
+  .topbar{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:30;
+    background:var(--nav-bg);
+    backdrop-filter:saturate(1.4) blur(8px);
+    border-bottom:1px solid var(--rule);
+    margin-inline:-24px; padding-inline:24px;
+  }
+  .topbar-inner{
+    max-width:64rem;margin:0 auto;
+    display:flex;align-items:center;gap:20px;
+    min-height:56px;flex-wrap:wrap;
+  }
+  .wordmark{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink);font-weight:600;text-decoration:none;white-space:nowrap;
+  }
+  .wordmark span{color:var(--teal);}
+  nav.menu{display:flex;gap:2px;flex-wrap:wrap;margin-left:auto;align-items:center;}
+  nav.menu a{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.72rem;letter-spacing:.04em;
+    color:var(--muted);text-decoration:none;
+    padding:6px 9px;border-radius:2px;white-space:nowrap;
+  }
+  nav.menu a:hover{color:var(--ink);background:var(--rule-soft);}
+  nav.menu a.active{color:var(--teal);background:var(--teal-soft);}
+  .theme-toggle{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.72rem;color:var(--muted);
+    background:none;border:1px solid var(--rule);border-radius:2px;
+    padding:5px 9px;cursor:pointer;
+  }
+  .theme-toggle:hover{color:var(--teal);border-color:var(--teal);}
+
+  /* ---------------- hero ---------------- */
+  header.hero{padding-block:76px 52px;border-bottom:1px solid var(--rule);}
+  .hero-grid{display:grid;gap:34px;}
+  @media (min-width:860px){
+    .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:64px;align-items:start;}
+  }
+  .hero h1 span{display:block;color:var(--teal);}
+  .hangul{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.78rem;letter-spacing:.1em;color:var(--faint);padding-top:16px;
+  }
+  .lead{font-size:1.2rem;line-height:1.55;color:var(--body);max-width:52ch;}
+  .lead em{font-style:italic;color:var(--ink);}
+  .hero-meta{
+    display:grid;gap:8px;padding-top:22px;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.76rem;line-height:1.5;color:var(--muted);
+  }
+  .hero-meta .where{color:var(--ink);font-weight:500;}
+
+  /* ---------------- sections ---------------- */
+  section{padding-block:66px 0;scroll-margin-top:72px;}
+  .sec-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    gap:14px;flex-wrap:wrap;
+    border-bottom:1px solid var(--rule);padding-bottom:12px;margin-bottom:30px;
+  }
+
+  /* ---------------- goal ---------------- */
+  .goal-prose{display:grid;gap:20px;max-width:64ch;}
+  .goal-prose p{font-size:1.06rem;}
+  .goal-prose .pull{
+    font-size:1.2rem;line-height:1.5;color:var(--ink);
+    border-left:2px solid var(--coral);padding-left:20px;
+  }
+  .themes{display:grid;gap:0;padding-top:46px;}
+  .theme{
+    display:grid;gap:24px;
+    padding-block:38px;border-top:1px solid var(--rule-soft);
+  }
+  .theme-label{color:var(--ink);font-size:1.22rem;line-height:1.32;padding-bottom:12px;}
+  .theme-label .idx{
+    display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.63rem;letter-spacing:.12em;color:var(--faint);
+    text-transform:uppercase;padding-bottom:7px;
+  }
+  .theme p{color:var(--muted);max-width:64ch;font-size:1rem;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;padding-top:15px;}
+  .tag{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.68rem;color:var(--muted);
+    border:1px solid var(--rule);border-radius:2px;
+    padding:2px 7px;background:var(--surface);
+  }
+  figure.theme-fig{margin:0;display:grid;gap:9px;max-width:52rem;}
+  figure.theme-fig button{
+    display:block;width:100%;padding:0;cursor:zoom-in;
+    border:1px solid var(--rule);border-radius:3px;background:#fff;
+    box-shadow:var(--shadow);
+  }
+  figure.theme-fig button:hover{border-color:var(--teal);}
+  figure.theme-fig img{width:100%;height:auto;border-radius:2px;}
+  figure.theme-fig figcaption{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.69rem;line-height:1.55;color:var(--faint);
+  }
+
+  /* ---------------- people ---------------- */
+  .person{
+    display:grid;grid-template-columns:minmax(0,1fr);gap:26px;
+    padding-bottom:34px;border-bottom:1px solid var(--rule-soft);
+  }
+  @media (min-width:800px){
+    .person{grid-template-columns:14rem minmax(0,1fr);gap:48px;}
+  }
+  .portrait{
+    aspect-ratio:4/5;max-width:100%;
+    background:
+      repeating-linear-gradient(135deg,var(--rule-soft) 0 10px,transparent 10px 20px),
+      var(--surface);
+    border:1px solid var(--rule);border-radius:2px;
+    display:grid;place-items:center;text-align:center;padding:16px;
+  }
+  .portrait span{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.66rem;letter-spacing:.08em;color:var(--faint);text-transform:uppercase;line-height:1.7;
+  }
+  .person-body{display:grid;gap:13px;}
+  .person-body .pname{font-size:1.4rem;color:var(--ink);}
+  .person-body .ptitle{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.76rem;color:var(--teal);letter-spacing:.03em;line-height:1.6;
+  }
+  .person-body p{max-width:62ch;color:var(--muted);}
+  .person-body p.bio{color:var(--body);}
+  .cv{
+    display:grid;gap:0;padding-top:8px;max-width:58ch;
+    border-top:1px solid var(--rule-soft);margin-top:6px;
+  }
+  .cv-row{
+    display:grid;grid-template-columns:minmax(0,1fr);gap:2px;
+    padding-block:11px;border-bottom:1px solid var(--rule-soft);
+  }
+  @media (min-width:560px){
+    .cv-row{grid-template-columns:7.5rem minmax(0,1fr);gap:20px;align-items:baseline;}
+  }
+  .cv-row .yr{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.73rem;color:var(--faint);font-variant-numeric:tabular-nums;
+  }
+  .cv-row .what{font-size:.96rem;color:var(--body);}
+  .cv-row .what small{display:block;color:var(--muted);font-size:.87rem;}
+  .roster-note{
+    margin-top:32px;padding:20px 22px;
+    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+    box-shadow:var(--shadow);max-width:60ch;
+  }
+  .roster-note p{color:var(--muted);font-size:.97rem;}
+  .roster-note h4{padding-bottom:6px;}
+
+  /* ---------------- publications ---------------- */
+  .pub{
+    display:grid;grid-template-columns:minmax(0,1fr);gap:6px;
+    padding-block:20px;border-bottom:1px solid var(--rule-soft);
+  }
+  @media (min-width:800px){
+    .pub{grid-template-columns:4.5rem minmax(0,1fr);gap:28px;}
+  }
+  .pub .yr{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.78rem;color:var(--faint);font-variant-numeric:tabular-nums;
+    padding-top:3px;
+  }
+  .pub-body{display:grid;gap:6px;max-width:68ch;}
+  .pub-body .t{font-size:1.04rem;color:var(--ink);line-height:1.38;}
+  .pub-body .authors{color:var(--muted);font-size:.9rem;line-height:1.5;}
+  .pub-body .authors b{color:var(--ink);font-weight:600;}
+  .pub-body .venue{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.73rem;color:var(--muted);
+  }
+  .pub-body .venue em{font-style:normal;color:var(--ink);}
+  .pub-note{
+    padding-top:26px;max-width:62ch;color:var(--muted);font-size:.97rem;
+  }
+
+  /* ---------------- photos ---------------- */
+  .photo-intro{max-width:60ch;color:var(--muted);padding-bottom:26px;font-size:.99rem;}
+  .gallery{
+    display:grid;gap:20px;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  }
+  figure.slot{margin:0;display:grid;gap:9px;}
+  .frame{
+    aspect-ratio:4/3;border:1px dashed var(--rule);border-radius:3px;
+    background:var(--surface);
+    display:grid;place-items:center;text-align:center;padding:14px;
+  }
+  .frame span{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);
+  }
+  figure.slot figcaption{font-size:.92rem;color:var(--muted);line-height:1.45;}
+
+  .lightbox{
+    position:fixed;inset:0;z-index:60;
+    background:rgba(8,14,13,.9);
+    display:grid;place-items:center;padding:24px;
+  }
+  .lightbox img{max-width:min(96vw,1100px);max-height:84vh;width:auto;border-radius:3px;background:#fff;}
+  .lightbox .close{
+    position:absolute;top:16px;right:16px;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.72rem;
+    color:#e9efec;background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.3);border-radius:2px;
+    padding:6px 11px;cursor:pointer;letter-spacing:.06em;
+  }
+  .lightbox .cap{
+    position:absolute;bottom:18px;left:0;right:0;text-align:center;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.72rem;color:#c3cfcb;padding-inline:24px;
+  }
+
+  /* ---------------- join ---------------- */
+  .join-grid{display:grid;gap:34px;}
+  @media (min-width:840px){.join-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:56px;align-items:start;}}
+  .join-prose{display:grid;gap:18px;max-width:60ch;}
+  .join-prose p{font-size:1.03rem;}
+  .looking{
+    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+    padding:24px;display:grid;gap:16px;box-shadow:var(--shadow);
+  }
+  .looking ul{margin:0;padding-left:18px;display:grid;gap:9px;}
+  .looking li{color:var(--muted);font-size:.97rem;line-height:1.5;}
+  .looking li b{color:var(--ink);font-weight:500;}
+  .apply{
+    border-top:1px solid var(--rule-soft);padding-top:16px;
+    font-size:.95rem;color:var(--muted);
+  }
+
+  /* ---------------- contact ---------------- */
+  .contact-grid{display:grid;gap:32px;}
+  @media (min-width:760px){.contact-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:56px;}}
+  .cblock{display:grid;gap:10px;align-content:start;}
+  .cblock .clabel{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);
+  }
+  .cblock a,.cblock address,.cblock .plain{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.84rem;font-style:normal;line-height:1.65;color:var(--ink);
+    text-decoration:none;width:fit-content;
+  }
+  .cblock a{border-bottom:1px solid var(--rule);padding-bottom:2px;}
+  .cblock a:hover{color:var(--teal);border-bottom-color:var(--teal);}
+  footer{
+    margin-top:76px;padding-top:24px;border-top:1px solid var(--rule);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.72rem;color:var(--faint);line-height:1.7;max-width:64ch;
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="#top">Translational <span>Bioinformatics</span> Lab</a>
+    <nav class="menu" id="menu">
+      <a href="#goal">Our Goal</a>
+      <a href="#people">People</a>
+      <a href="#publications">Publications</a>
+      <a href="#photos">Photos</a>
+      <a href="#join">Join Us</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">Theme</button>
+    </nav>
+  </div>
+</div>
+
+<div class="shell" id="top">
+
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <h1>Translational<br>Bioinformatics <span>Lab</span></h1>
+        <div class="hangul">중개생물정보학 연구실 · 수원대학교 AI데이터사이언스부</div>
+      </div>
+      <div>
+        <p class="lead">We ask a narrow question carefully: <em>what in a tumor — before treatment, or in how it changes under treatment — actually carries information about how a patient will respond?</em> Our answers come from patient-derived models, clinical biopsies, liquid biopsy and the gut microbiome, and we report the negative results alongside the positive ones.</p>
+        <div class="hero-meta">
+          <span class="where">Division of AI Data Science</span>
+          <span>College of Information and Communication Technology</span>
+          <span>The University of Suwon, Hwaseong, Republic of Korea</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ OUR GOAL ============ -->
+  <section id="goal">
+    <div class="sec-head">
+      <h2>Our Goal</h2>
+      <span class="eyebrow">What we are trying to find out</span>
+    </div>
+
+    <div class="goal-prose">
+      <p>Two patients receive the same cancer treatment. One tumor disappears; the other barely changes. Our goal is to find the measurement that tells them apart in advance — and to be equally clear about when no such measurement exists in the data at hand.</p>
+
+      <p>Getting there takes two things that are usually pursued separately. The first is material: living models of individual patients' tumors, and clinical cohorts measured deeply enough that a finding can be checked against a second, independent layer of evidence. The second is method: models that can combine those layers, and the discipline to audit what they learn from.</p>
+
+      <p class="pull">A signature that separates responders in one cohort and fails in the next is not a weak biomarker. It is usually a sign that the question was asked at the wrong moment, or of the wrong measurement.</p>
+
+      <p>We have spent a decade building the material — patient-derived organoids and cell lines across colorectal, pancreatic, breast and brain tumors, characterized against the tissue they came from. Having built the models, we now use them to ask what they can and cannot predict, and we hold the answers to the same standard either way. When our own evidence shows that a baseline signature does not reproduce, that becomes the finding rather than a result to be reframed.</p>
+
+      <p>The same toolkit is not confined to the clinic. Comparative and functional genomics answer questions about environmental bacteria and plant roots just as well, and we take those on where the biology is interesting — because the methods travel even when the subject does not.</p>
+    </div>
+
+    <div class="themes">
+      <article class="theme">
+        <div>
+          <div class="theme-label"><span class="idx">Theme</span>Patient-derived models of human cancer</div>
+          <p>Tumors grown outside the patient, as organoids and as continuous cell lines, then characterized against the tissue they came from — which mutations survive the transition, which expression programs hold, and how sensitivity to drugs and radiation can be measured directly. The models are biobanked and distributed, so they outlive any single study.</p>
+          <div class="tags"><span class="tag">organoids</span><span class="tag">cell lines</span><span class="tag">WES / WGS</span><span class="tag">methylation</span><span class="tag">ex vivo drug panels</span><span class="tag">biobanking</span></div>
+        </div>
+        <figure class="theme-fig">
+          <button type="button" data-full="img/ga_models.png" data-cap="Patient-derived models of human cancer: organoids and cell lines characterized against the original tumor">
+            <img src="img/ga_models.png" alt="Diagram: patient tumor giving rise to organoids and cell lines, each characterized by sequencing, methylation and drug panels" loading="lazy">
+          </button>
+          <figcaption>Counts shown are from first-author papers listed under Publications</figcaption>
+        </figure>
+      </article>
+
+      <article class="theme">
+        <div>
+          <div class="theme-label"><span class="idx">Theme</span>Predicting response to treatment</div>
+          <p>Our deepest case is rectal cancer, where chemoradiation precedes surgery and the response is graded directly. Using paired biopsies taken before and after therapy, organoids irradiated ex vivo, and a re-analysis of every suitable public cohort, we test where the response signal actually lives — and found that baseline expression carries much less of it than the field assumes.</p>
+          <div class="tags"><span class="tag">paired biopsies</span><span class="tag">RNA-seq</span><span class="tag">ex vivo irradiation</span><span class="tag">Olink</span><span class="tag">cross-cohort replication</span></div>
+        </div>
+        <figure class="theme-fig">
+          <button type="button" data-full="img/ga_response.png" data-cap="Where the response signal lives: baseline expression versus treatment-induced change">
+            <img src="img/ga_response.png" alt="Diagram contrasting a weak baseline expression signal across 17 cohorts with a reproducible treatment-induced change across 6 paired datasets" loading="lazy">
+          </button>
+          <figcaption>Contrasting what baseline and paired sampling each recover</figcaption>
+        </figure>
+      </article>
+
+      <article class="theme">
+        <div>
+          <div class="theme-label"><span class="idx">Theme</span>Reading the tumor from blood and gut</div>
+          <p>A tumor leaves traces well beyond itself. We measure the gut and oral microbiome, the peripheral blood transcriptome, and plasma cell-free DNA in the same patients before any treatment, to learn what a first liquid biopsy is really reporting — tumor burden, or the state of the host carrying it.</p>
+          <div class="tags"><span class="tag">16S rRNA</span><span class="tag">blood transcriptome</span><span class="tag">WGS</span><span class="tag">methylation</span><span class="tag">cell-free DNA</span></div>
+        </div>
+        <figure class="theme-fig">
+          <button type="button" data-full="img/ga_bloodgut.png" data-cap="Six sample types in the same treatment-naive patients, and the three coupled axes they reveal">
+            <img src="img/ga_bloodgut.png" alt="Diagram of six sample types feeding three coupled axes: oral pathobionts in the gut, peripheral myeloid state, and plasma cell-free DNA variant load" loading="lazy">
+          </button>
+          <figcaption>Three axes reported as coupled, not as a causal chain</figcaption>
+        </figure>
+      </article>
+
+      <article class="theme">
+        <div>
+          <div class="theme-label"><span class="idx">Theme</span>Multi-modal machine learning, audited</div>
+          <p>Cross-attention models that fuse mutations, expression, protein and whole-slide histology to predict drug sensitivity — together with the less glamorous half of the work: checking whether the retrospective outcome labels such models learn from mean what they are assumed to mean, and reporting the drug classes where a simple linear baseline wins.</p>
+          <div class="tags"><span class="tag">cross-attention</span><span class="tag">attention MIL</span><span class="tag">pathology foundation models</span><span class="tag">nested CV</span><span class="tag">label audit</span></div>
+        </div>
+        <figure class="theme-fig">
+          <button type="button" data-full="img/ga_dp.jpg" data-cap="PathOmicDRP: cross-attention fusion of four modalities across a pan-cancer cohort">
+            <img src="img/ga_dp.jpg" alt="Graphical abstract of the PathOmicDRP framework across breast, colorectal and lung adenocarcinoma cohorts" loading="lazy">
+          </button>
+          <figcaption>Graphical abstract, PathOmicDRP pan-cancer framework</figcaption>
+        </figure>
+      </article>
+
+      <article class="theme">
+        <div>
+          <div class="theme-label"><span class="idx">Theme</span>Genomes beyond the clinic</div>
+          <p>The same comparative and functional genomics, applied where the biology is interesting rather than clinical: mining livestock-waste metagenomes for bacteria that precipitate carbonate and could turn waste into building material, and reading plant root transcriptomes to test whether a polyphenol acts in planta on the proton pump it inhibits in a test tube.</p>
+          <div class="tags"><span class="tag">metagenome-assembled genomes</span><span class="tag">pangenome</span><span class="tag">selection analysis</span><span class="tag">structure prediction</span><span class="tag">plant RNA-seq</span></div>
+        </div>
+        <figure class="theme-fig">
+          <button type="button" data-full="img/ga_up.jpg" data-cap="Livestock-waste metagenomes yield two convergent lineages with a vertically inherited ure–cah module">
+            <img src="img/ga_up.jpg" alt="Graphical abstract showing 111 metagenome-assembled genomes from four waste streams and the six carrying a complete carbonate-precipitation module" loading="lazy">
+          </button>
+          <figcaption>Graphical abstract, livestock-waste MICP genome survey</figcaption>
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ PEOPLE ============ -->
+  <section id="people">
+    <div class="sec-head">
+      <h2>People</h2>
+      <span class="eyebrow">Principal investigator</span>
+    </div>
+
+    <div class="person">
+      <div class="portrait"><span>Portrait<br>to be added</span></div>
+      <div class="person-body">
+        <div class="pname">Soon-Chan Kim, PhD <span class="mono" style="font-size:.8rem;color:var(--faint);">김순찬</span></div>
+        <div class="ptitle">Assistant Professor · Division of AI Data Science<br>The University of Suwon</div>
+        <p class="bio">Soon-Chan Kim works where clinical oncology data meets computational biology. Before joining the University of Suwon in 2025, he spent a decade at the Cancer Research Institute and Korean Cell Line Bank of Seoul National University College of Medicine, establishing and characterizing patient-derived cancer cell lines and organoids across colorectal, pancreatic, breast and brain tumors — work that produced most of his published record.</p>
+        <p>His current research applies AI-driven multi-omics analysis to treatment response and computational drug-efficacy screening, and he continues to collaborate closely with surgical, radiation-oncology and pathology groups at Seoul National University Hospital. He also serves as Academic Director of the Korean Cell Line Research Foundation, and teaches machine learning at the University of Suwon.</p>
+
+        <div class="cv">
+          <div class="cv-row"><span class="yr">2025 –</span><span class="what">Assistant Professor<small>Division of AI Data Science, The University of Suwon</small></span></div>
+          <div class="cv-row"><span class="yr">– 2025</span><span class="what">Postdoctoral Researcher, then Research Assistant Professor<small>Seoul National University College of Medicine</small></span></div>
+          <div class="cv-row"><span class="yr">2014 – 2020</span><span class="what">PhD, Medical Science<small>Seoul National University College of Medicine</small></span></div>
+          <div class="cv-row"><span class="yr">2008 – 2013</span><span class="what">BS, Integrative Biology<small>University of California, Berkeley</small></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="roster-note">
+      <h4>Lab members</h4>
+      <p>Graduate and undergraduate positions are open. Students who join will be listed here — see <a href="#join">Join Us</a> for what the work looks like and who it suits.</p>
+    </div>
+  </section>
+
+  <!-- ============ PUBLICATIONS ============ -->
+  <section id="publications">
+    <div class="sec-head">
+      <h2>Publications</h2>
+      <span class="eyebrow">Selected first-author work</span>
+    </div>
+
+    <div class="pub">
+      <span class="yr">2025</span>
+      <div class="pub-body">
+        <div class="t">Pressurized intraperitoneal aerosol chemotherapy enhances cisplatin efficacy in colorectal cancer organoids</div>
+        <p class="authors"><b>Kim SC</b>, Lee SA, Kim MJ, Shin YK, Kim HS, Jeong SY, Ku JL, Park JW</p>
+        <p class="venue"><em>Scientific Reports</em> 15, 44165 · <a href="https://doi.org/10.1038/s41598-025-27866-1">10.1038/s41598-025-27866-1</a></p>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="yr">2025</span>
+      <div class="pub-body">
+        <div class="t">Establishment and characterization of 24 breast cancer cell lines and 3 breast cancer organoids reveals molecular heterogeneity and drug response variability in malignant pleural effusion-derived models</div>
+        <p class="authors"><b>Kim SC</b>, Kim GH, Park JH, Lee KH, Koh J, Kim TY, Lee DW, Kim YJ, Kim S, Park SY, Min A, Shin YK, Im SA, Ku JL</p>
+        <p class="venue"><em>Breast Cancer Research</em> 27, 66 · <a href="https://doi.org/10.1186/s13058-025-02032-7">10.1186/s13058-025-02032-7</a></p>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="yr">2024</span>
+      <div class="pub-body">
+        <div class="t">Effects of simulated microgravity on colorectal cancer organoids growth and drug response</div>
+        <p class="authors"><b>Kim SC</b>, Kim MJ, Park JW, Shin YK, Jeong SY, Kim S, Ku JL</p>
+        <p class="venue"><em>Scientific Reports</em> 14, 25526 · <a href="https://doi.org/10.1038/s41598-024-76737-8">10.1038/s41598-024-76737-8</a></p>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="yr">2024</span>
+      <div class="pub-body">
+        <div class="t">Establishment, characterization, and biobanking of 36 pancreatic cancer organoids: prediction of metastasis in resectable pancreatic cancer</div>
+        <p class="authors"><b>Kim SC</b>, Seo HY, Lee JO, Maeng JE, Shin YK, Lee SH, Jang JY, Ku JL</p>
+        <p class="venue"><em>Cellular Oncology</em> 47(5), 1627–1647 · <a href="https://doi.org/10.1007/s13402-024-00939-5">10.1007/s13402-024-00939-5</a></p>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="yr">2023</span>
+      <div class="pub-body">
+        <div class="t">Patient-derived glioblastoma cell lines with conserved genome profiles of the original tissue</div>
+        <p class="authors"><b>Kim SC</b>, Cho YE, Shin YK, Yu HJ, Chowdhury T, Kim S, Yi KS, Choi CH, Cha SH, Park CK, Ku JL</p>
+        <p class="venue"><em>Scientific Data</em> 10, 448 · <a href="https://doi.org/10.1038/s41597-023-02365-y">10.1038/s41597-023-02365-y</a></p>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="yr">2022</span>
+      <div class="pub-body">
+        <div class="t">Multifocal organoid capturing of colon cancer reveals pervasive intratumoral heterogenous drug responses</div>
+        <p class="authors"><b>Kim SC</b>, Park JW, Seo HY, Kim M, Park JH, Kim GH, Lee JO, Shin YK, Bae JM, Koo BK, Jeong SY, Ku JL</p>
+        <p class="venue"><em>Advanced Science</em> 9(5), e2103360 · <a href="https://doi.org/10.1002/advs.202103360">10.1002/advs.202103360</a></p>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="yr">2020</span>
+      <div class="pub-body">
+        <div class="t">Establishment and characterization of 18 human colorectal cancer cell lines</div>
+        <p class="authors"><b>Kim SC</b>, Kim HS, Kim JH, Jeong N, Shin YK, Kim MJ, Park JW, Jeong SY, Ku JL</p>
+        <p class="venue"><em>Scientific Reports</em> 10, 6801 · <a href="https://doi.org/10.1038/s41598-020-63812-z">10.1038/s41598-020-63812-z</a></p>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="yr">2019</span>
+      <div class="pub-body">
+        <div class="t">Establishment and characterization of 10 human pancreatic cancer cell lines including a HER2 overexpressed cell line</div>
+        <p class="authors"><b>Kim SC</b>, Shin YK, Kim SW, Seo HY, Kwon W, Kim H, Han Y, Lee JO, Jang JY, Ku JL</p>
+        <p class="venue"><em>Pancreas</em> 48(10), 1285–1293 · <a href="https://doi.org/10.1097/MPA.0000000000001420">10.1097/MPA.0000000000001420</a></p>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="yr">2019</span>
+      <div class="pub-body">
+        <div class="t">Identification of a novel fusion gene, <i>FAM174A-WWC1</i>, in early-onset colorectal cancer: establishment and characterization of four human cancer cell lines from early-onset colorectal cancers</div>
+        <p class="authors"><b>Kim SC</b>, Shin R, Seo HY, Kim M, Park JW, Jeong SY, Ku JL</p>
+        <p class="venue"><em>Translational Oncology</em> 12(9), 1185–1195 · <a href="https://doi.org/10.1016/j.tranon.2019.05.019">10.1016/j.tranon.2019.05.019</a></p>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="yr">2018</span>
+      <div class="pub-body">
+        <div class="t">Establishment and characterization of paired primary and peritoneal seeding human colorectal cancer cell lines: identification of genes that mediate metastatic potential</div>
+        <p class="authors"><b>Kim SC</b>, Hong CW, Jang SG, Kim YA, Yoo BC, Shin YK, Jeong SY, Ku JL, Park JG</p>
+        <p class="venue"><em>Translational Oncology</em> 11(5), 1232–1243 · <a href="https://doi.org/10.1016/j.tranon.2018.07.014">10.1016/j.tranon.2018.07.014</a></p>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="yr">2018</span>
+      <div class="pub-body">
+        <div class="t">Identification of genes inducing resistance to ionizing radiation in human rectal cancer cell lines: re-sensitization of radio-resistant rectal cancer cells through down regulating <i>NDRG1</i></div>
+        <p class="authors"><b>Kim SC</b>, Shin YK, Kim YA, Jang SG, Ku JL</p>
+        <p class="venue"><em>BMC Cancer</em> 18, 594 · <a href="https://doi.org/10.1186/s12885-018-4514-3">10.1186/s12885-018-4514-3</a></p>
+      </div>
+    </div>
+
+    <p class="pub-note">These are first-author papers. A full list, including collaborative work and book chapters, is on the <a href="https://www.suwon.ac.kr/mainHp/prointro/detail.html?eno=1255130">University of Suwon faculty page</a> and in <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Kim+Soon-Chan%5BAuthor%5D">PubMed</a>.</p>
+  </section>
+
+  <!-- ============ PHOTOS ============ -->
+  <section id="photos">
+    <div class="sec-head">
+      <h2>Photos</h2>
+      <span class="eyebrow">Life in the lab</span>
+    </div>
+
+    <p class="photo-intro">Pictures of the group, the workspace and the things we get up to away from the screen. This page is new — photographs are being collected and will appear here.</p>
+
+    <div class="gallery">
+      <figure class="slot">
+        <div class="frame"><span>Photo</span></div>
+        <figcaption>The group</figcaption>
+      </figure>
+      <figure class="slot">
+        <div class="frame"><span>Photo</span></div>
+        <figcaption>The office, Global Business Building</figcaption>
+      </figure>
+      <figure class="slot">
+        <div class="frame"><span>Photo</span></div>
+        <figcaption>At the bench, Cancer Research Institute</figcaption>
+      </figure>
+      <figure class="slot">
+        <div class="frame"><span>Photo</span></div>
+        <figcaption>Conferences and talks</figcaption>
+      </figure>
+      <figure class="slot">
+        <div class="frame"><span>Photo</span></div>
+        <figcaption>Teaching and workshops</figcaption>
+      </figure>
+      <figure class="slot">
+        <div class="frame"><span>Photo</span></div>
+        <figcaption>Lab dinners</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ JOIN US ============ -->
+  <section id="join">
+    <div class="sec-head">
+      <h2>Join Us</h2>
+      <span class="eyebrow">Graduate &amp; undergraduate positions</span>
+    </div>
+
+    <div class="join-grid">
+      <div class="join-prose">
+        <p>We work with real clinical data, which means the interesting part of the job is rarely the model. It is deciding what a number means: whether two cohorts can be compared, why a sample count changed between analyses, whether a signal survives correction, and when the honest answer is that the data cannot tell.</p>
+        <p>You do not need a biology degree to start, and you do not need to be a strong programmer to start. You do need to be willing to become both, and to be uncomfortable when a result looks too good.</p>
+        <p>Projects available now range from organoid and biopsy transcriptomics, to multi-modal deep learning on pathology slides, to comparative genomics of environmental bacteria. We will match the project to what you want to learn.</p>
+      </div>
+
+      <div class="looking">
+        <h4>What helps</h4>
+        <ul>
+          <li><b>Python or R</b> — enough to write your own analysis, not only to run someone else's notebook.</li>
+          <li><b>Statistics you can defend</b> — knowing when a test is the wrong test matters more than knowing many tests.</li>
+          <li><b>Curiosity about the biology</b>, whether or not you have studied it formally.</li>
+          <li><b>Care with detail</b> — most errors we catch are bookkeeping errors, and they are caught by people who check.</li>
+        </ul>
+        <p class="apply">To apply, email a short note about what you would like to work on and why, with a CV or transcript. Undergraduates interested in a research internship are welcome to write as well.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="sec-head">
+      <h2>Contact</h2>
+      <span class="eyebrow">Collaboration &amp; inquiries</span>
+    </div>
+
+    <div class="contact-grid">
+      <div class="cblock">
+        <span class="clabel">Email</span>
+        <a href="mailto:soonchan.kim@suwon.ac.kr">soonchan.kim@suwon.ac.kr</a>
+        <span class="clabel" style="padding-top:14px;">Phone</span>
+        <a href="tel:+820312202479">031-220-2479</a>
+        <span class="clabel" style="padding-top:14px;">Code</span>
+        <a href="https://github.com/Soonlab">github.com/Soonlab</a>
+      </div>
+      <div class="cblock">
+        <span class="clabel">Office</span>
+        <address>
+          Global Business Building, Room 901<br>
+          Division of AI Data Science<br>
+          College of Information and Communication Technology<br>
+          The University of Suwon<br>
+          Hwaseong, Gyeonggi-do, Republic of Korea
+        </address>
+        <span class="clabel" style="padding-top:14px;">Faculty page</span>
+        <a href="https://www.suwon.ac.kr/mainHp/prointro/detail.html?eno=1255130">suwon.ac.kr</a>
+      </div>
+    </div>
+
+    <footer>
+      We are glad to hear from clinical groups with paired sampling designs, and from anyone holding a rectal cancer cohort with both pre- and on-treatment material. Analysis code is released with each manuscript.
+    </footer>
+  </section>
+
+</div>
+
+<script>
+  (function(){
+    /* theme */
+    var btn = document.getElementById('theme-toggle');
+    var root = document.documentElement;
+    try {
+      var stored = localStorage.getItem('tbl-theme');
+      if (stored === 'dark' || stored === 'light') root.setAttribute('data-theme', stored);
+    } catch (e) {}
+    btn.addEventListener('click', function(){
+      var cur = root.getAttribute('data-theme');
+      var isDark = cur ? cur === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var next = isDark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('tbl-theme', next); } catch (e) {}
+    });
+
+    /* active section in menu */
+    var links = Array.prototype.slice.call(document.querySelectorAll('#menu a'));
+    var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (!en.isIntersecting) return;
+          var i = sections.indexOf(en.target);
+          if (i < 0) return;
+          links.forEach(function(l){ l.classList.remove('active'); });
+          links[i].classList.add('active');
+        });
+      }, { rootMargin: '-15% 0px -70% 0px' });
+      sections.forEach(function(s){ if (s) obs.observe(s); });
+    }
+
+    /* lightbox for the theme figures */
+    var box = null;
+    function closeBox(){
+      if (box) { box.remove(); box = null; document.removeEventListener('keydown', onKey); }
+    }
+    function onKey(e){ if (e.key === 'Escape') closeBox(); }
+    document.addEventListener('click', function(e){
+      var b = e.target.closest('button[data-full]');
+      if (!b) return;
+      closeBox();
+      box = document.createElement('div');
+      box.className = 'lightbox';
+      var img = document.createElement('img');
+      img.src = b.getAttribute('data-full');
+      img.alt = b.getAttribute('data-cap') || '';
+      var close = document.createElement('button');
+      close.className = 'close'; close.type = 'button'; close.textContent = 'Close';
+      var cap = document.createElement('div');
+      cap.className = 'cap'; cap.textContent = b.getAttribute('data-cap') || '';
+      box.appendChild(img); box.appendChild(close); box.appendChild(cap);
+      box.addEventListener('click', function(ev){ if (ev.target !== img) closeBox(); });
+      document.body.appendChild(box);
+      document.addEventListener('keydown', onKey);
+    });
+  })();
+</script>
+
+</body>
+</html>
