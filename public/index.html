@@ -131,13 +131,14 @@
   }
 
   /* ---------------- hero ---------------- */
-  header.hero{padding-block:64px 52px;border-bottom:1px solid var(--rule);}
+  header.hero{padding-block:46px 34px;}
   .hero-grid{display:grid;gap:34px;}
   @media (min-width:860px){
     .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:64px;align-items:start;}
   }
-  .hero-logo{display:block;width:84px;height:84px;margin:0 0 26px -5px;}
-  @media (max-width:640px){ .hero-logo{width:64px;height:64px;margin-bottom:20px;} }
+  .hero-title{display:flex;align-items:flex-start;gap:24px;}
+  .hero-logo{display:block;flex:none;width:92px;height:92px;margin:4px 0 0 -4px;}
+  @media (max-width:640px){ .hero-title{gap:16px;} .hero-logo{width:62px;height:62px;margin-top:2px;} }
   .hero h1 span{display:block;color:var(--teal);}
   .hangul{
     font-family:"IBM Plex Mono",ui-monospace,monospace;
@@ -168,37 +169,63 @@
     font-size:1.2rem;line-height:1.5;color:var(--ink);
     border-left:2px solid var(--coral);padding-left:20px;
   }
-  .themes{display:grid;gap:0;padding-top:46px;}
+  .themes{display:grid;gap:0 48px;padding-top:40px;}
+  @media (min-width:820px){ .themes{grid-template-columns:repeat(2,minmax(0,1fr));} }
   .theme{
-    display:grid;gap:24px;
-    padding-block:38px;border-top:1px solid var(--rule-soft);
+    display:grid;gap:0;align-content:start;
+    padding-block:26px;border-top:1px solid var(--rule-soft);scroll-margin-top:96px;
   }
-  .theme-label{color:var(--ink);font-size:1.22rem;line-height:1.32;padding-bottom:12px;}
+  .theme-label{color:var(--ink);font-size:1.18rem;line-height:1.32;padding-bottom:10px;}
   .theme-label .idx{
     display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;
     font-size:.63rem;letter-spacing:.12em;color:var(--faint);
-    text-transform:uppercase;padding-bottom:7px;
+    text-transform:uppercase;padding-bottom:7px;text-decoration:none;
   }
-  .theme p{color:var(--muted);max-width:64ch;font-size:1rem;}
-  .tags{display:flex;flex-wrap:wrap;gap:6px;padding-top:15px;}
+  .theme-label .idx:hover{color:var(--teal);}
+  .theme p{color:var(--muted);font-size:.98rem;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;padding-top:13px;}
   .tag{
     font-family:"IBM Plex Mono",ui-monospace,monospace;
     font-size:.68rem;color:var(--muted);
     border:1px solid var(--rule);border-radius:2px;
     padding:2px 7px;background:var(--surface);
   }
-  figure.theme-fig{margin:0;display:grid;gap:9px;max-width:52rem;}
-  figure.theme-fig button{
-    display:block;width:100%;padding:0;cursor:zoom-in;
-    border:1px solid var(--rule);border-radius:3px;background:#fff;
-    box-shadow:var(--shadow);
+
+  /* ---------------- showcase (slides) ---------------- */
+  .showcase{padding-bottom:8px;border-bottom:1px solid var(--rule);scroll-margin-top:72px;}
+  .show-frame{position:relative;}
+  .show-track{
+    list-style:none;margin:0;padding:0;display:flex;
+    overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    border:1px solid var(--rule);border-radius:4px;background:#F7F5F0;box-shadow:var(--shadow);
   }
-  figure.theme-fig button:hover{border-color:var(--teal);}
-  figure.theme-fig img{width:100%;height:auto;border-radius:2px;}
-  figure.theme-fig figcaption{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
-    font-size:.69rem;line-height:1.55;color:var(--faint);
+  .show-track::-webkit-scrollbar{display:none;}
+  .slide{flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always;display:grid;min-width:0;background:var(--surface);}
+  .slide-img{display:block;width:100%;padding:0;border:0;background:#F7F5F0;cursor:zoom-in;aspect-ratio:15/8;}
+  .slide-img img{width:100%;height:100%;object-fit:contain;}
+  .slide-cap{
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;
+    padding:13px 18px 14px;border-top:1px solid var(--rule);
   }
+  .slide-n{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.1em;color:var(--faint);}
+  .slide-t{font-size:1.12rem;color:var(--ink);text-decoration:none;}
+  .slide-t:hover{color:var(--teal);}
+  .slide-l{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem;color:var(--muted);line-height:1.5;}
+  .show-nav{
+    position:absolute;top:calc(50% - 46px);width:40px;height:40px;border-radius:50%;
+    border:1px solid var(--rule);background:var(--nav-bg);color:var(--ink);
+    display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);
+  }
+  .show-nav svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .show-nav:hover{color:var(--teal);border-color:var(--teal);}
+  .show-nav.prev{left:10px;} .show-nav.next{right:10px;}
+  @media (min-width:1180px){ .show-nav.prev{left:-54px;} .show-nav.next{right:-54px;} }
+  @media (max-width:640px){ .show-nav{display:none;} .slide-cap{padding:11px 14px 12px;} }
+  .show-dots{display:flex;justify-content:center;gap:4px;padding:12px 0 18px;}
+  .show-dots button{width:26px;height:22px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center;}
+  .show-dots button::before{content:"";width:18px;height:3px;border-radius:2px;background:var(--rule);transition:background .2s,width .2s;}
+  .show-dots button[aria-current="true"]::before{background:var(--teal);width:26px;}
 
   /* ---------------- people ---------------- */
   .person{
@@ -265,6 +292,13 @@
   @media (min-width:800px){
     .pub{grid-template-columns:4.5rem minmax(0,1fr);gap:28px;}
   }
+  .more-pubs summary{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.78rem;letter-spacing:.04em;
+    color:var(--teal);cursor:pointer;padding-block:18px;border-bottom:1px solid var(--rule-soft);list-style:none;
+  }
+  .more-pubs summary::-webkit-details-marker{display:none;}
+  .more-pubs summary::before{content:"+ ";}
+  .more-pubs[open] summary::before{content:"− ";}
   .pub .yr{
     font-family:"IBM Plex Mono",ui-monospace,monospace;
     font-size:.78rem;color:var(--faint);font-variant-numeric:tabular-nums;
@@ -391,12 +425,14 @@
   <header class="hero">
     <div class="hero-grid">
       <div>
-        <svg class="hero-logo" viewBox="0 0 64 64" role="img" aria-label="Translational Bioinformatics Lab logo"><use href="#lab-logo"/></svg>
-        <h1>Translational<br>Bioinformatics <span>Lab</span></h1>
+        <div class="hero-title">
+          <svg class="hero-logo" viewBox="0 0 64 64" role="img" aria-label="Translational Bioinformatics Lab logo"><use href="#lab-logo"/></svg>
+          <h1>Translational<br>Bioinformatics <span>Lab</span></h1>
+        </div>
         <div class="hangul">중개생물정보학 연구실 · 수원대학교 AI데이터사이언스부</div>
       </div>
       <div>
-        <p class="lead">We ask a narrow question carefully: <em>what in a tumor — before treatment, or in how it changes under treatment — actually carries information about how a patient will respond?</em> Our answers come from patient-derived models, clinical biopsies, liquid biopsy and the gut microbiome, and we report the negative results alongside the positive ones.</p>
+        <p class="lead"><em>What in a tumor tells us how a patient will respond to treatment?</em> We look for the answer in patient-derived models, clinical biopsies, blood and the gut microbiome.</p>
         <div class="hero-meta">
           <span class="where">Division of AI Data Science</span>
           <span>College of Information and Communication Technology</span>
@@ -405,6 +441,67 @@
       </div>
     </div>
   </header>
+
+  <!-- ============ SHOWCASE: theme figures as slides ============ -->
+  <div class="showcase" id="showcase" role="region" aria-roledescription="carousel" aria-label="Research themes">
+    <div class="show-frame">
+      <ul class="show-track" id="show-track">
+        <li class="slide" id="slide-1" aria-roledescription="slide" aria-label="1 of 5: Patient-derived models of human cancer">
+          <button type="button" class="slide-img" data-full="img/ga_models.png" data-cap="Multifocal organoid capturing of colon cancer: each region of one tumor becomes its own organoid and cell line; driver mutations sit in a shared trunk while private mutations and drug response diverge. The tree and the response grid are schematic. After Kim et al., Advanced Science 2022.">
+            <img src="img/ga_models.png" alt="Graphical abstract in three panels: one colon tumor sampled at several regions, each grown as a separate organoid and cell line; a mutation tree with a shared trunk and private branches beside a schematic grid of diverging drug responses; and four take-aways, biobank, trunk, branches and faithful" width="1200" height="640" fetchpriority="high">
+          </button>
+          <div class="slide-cap">
+            <span class="slide-n">01 / 05</span>
+            <a class="slide-t" href="#theme-1">Patient-derived models of human cancer</a>
+            <span class="slide-l">Regions of one tumor share a trunk but respond differently to the same drugs · after <a href="https://doi.org/10.1002/advs.202103360">Kim et al., Adv Sci 2022</a></span>
+          </div>
+        </li>
+        <li class="slide" id="slide-2" aria-roledescription="slide" aria-label="2 of 5: Predicting response to treatment">
+          <button type="button" class="slide-img" data-full="img/ga_response.png" data-cap="Where the response signal lives in rectal cancer: baseline expression pooled across public pre-treatment cohorts sits close to chance, whereas the Wnt/Notch change under treatment points the same way in organoids, cell lines and paired patient biopsies.">
+            <img src="img/ga_response.png" alt="Graphical abstract in three panels: paired irradiation of patient-derived rectal organoids; a forest plot in which public pre-treatment cohorts scatter around chance; and the Wnt/Notch change under treatment pointing toward poor responders in all six paired datasets" width="1200" height="640" loading="lazy">
+          </button>
+          <div class="slide-cap">
+            <span class="slide-n">02 / 05</span>
+            <a class="slide-t" href="#theme-2">Predicting response to treatment</a>
+            <span class="slide-l">Baseline expression sits close to chance; the change under treatment points one way</span>
+          </div>
+        </li>
+        <li class="slide" id="slide-3" aria-roledescription="slide" aria-label="3 of 5: Reading the tumor from blood and gut">
+          <button type="button" class="slide-img" data-full="img/ga_bloodgut.png" data-cap="Colorectal cancer profiled before treatment: in about one third of patients oral bacteria reach the gut, and this coincides with a higher blood myeloid signature and a lower plasma cell-free DNA variant load, independently of stage. Association, not a causal chain.">
+            <img src="img/ga_bloodgut.png" alt="Graphical abstract in three panels: microbiome, blood cells and plasma sampled from the same patient; oral genera that are common in saliva and reach stool in one in three patients; and the accompanying pattern, higher myeloid signatures and a lower plasma cell-free DNA variant load" width="1200" height="640" loading="lazy">
+          </button>
+          <div class="slide-cap">
+            <span class="slide-n">03 / 05</span>
+            <a class="slide-t" href="#theme-3">Reading the tumor from blood and gut</a>
+            <span class="slide-l">Gut, blood and plasma move together: association, not cause</span>
+          </div>
+        </li>
+        <li class="slide" id="slide-4" aria-roledescription="slide" aria-label="4 of 5: Multi-modal machine learning, audited">
+          <button type="button" class="slide-img" data-full="img/ga_dp.jpg" data-cap="PathOmicDRP: cross-attention fusion of four modalities across a pan-cancer cohort">
+            <img src="img/ga_dp.jpg" alt="Graphical abstract of the PathOmicDRP framework across breast, colorectal and lung adenocarcinoma cohorts" width="1200" height="734" loading="lazy">
+          </button>
+          <div class="slide-cap">
+            <span class="slide-n">04 / 05</span>
+            <a class="slide-t" href="#theme-4">Multi-modal machine learning, audited</a>
+            <span class="slide-l">Four data modalities fused to predict drug sensitivity, then audited</span>
+          </div>
+        </li>
+        <li class="slide" id="slide-5" aria-roledescription="slide" aria-label="5 of 5: Genomes beyond the clinic">
+          <button type="button" class="slide-img" data-full="img/ga_up.jpg" data-cap="Livestock-waste metagenomes yield two convergent lineages with a vertically inherited ure–cah module">
+            <img src="img/ga_up.jpg" alt="Graphical abstract showing 111 metagenome-assembled genomes from four waste streams and the six carrying a complete carbonate-precipitation module" width="1200" height="663" loading="lazy">
+          </button>
+          <div class="slide-cap">
+            <span class="slide-n">05 / 05</span>
+            <a class="slide-t" href="#theme-5">Genomes beyond the clinic</a>
+            <span class="slide-l">Waste-stream metagenomes mined for bacteria that precipitate carbonate</span>
+          </div>
+        </li>
+      </ul>
+      <button class="show-nav prev" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="show-nav next" type="button" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="show-dots" id="show-dots"></div>
+  </div>
 
   <!-- ============ OUR GOAL ============ -->
   <section id="goal">
@@ -416,84 +513,36 @@
     <div class="goal-prose">
       <p>Two patients receive the same cancer treatment. One tumor disappears; the other barely changes. Our goal is to find the measurement that tells them apart in advance — and to be equally clear about when no such measurement exists in the data at hand.</p>
 
-      <p>Getting there takes two things that are usually pursued separately. The first is material: living models of individual patients' tumors, and clinical cohorts measured deeply enough that a finding can be checked against a second, independent layer of evidence. The second is method: models that can combine those layers, and the discipline to audit what they learn from.</p>
-
       <p class="pull">A signature that separates responders in one cohort and fails in the next is not a weak biomarker. It is usually a sign that the question was asked at the wrong moment, or of the wrong measurement.</p>
 
-      <p>We have spent a decade building the material — patient-derived organoids and cell lines across colorectal, pancreatic, breast and brain tumors, characterized against the tissue they came from. Having built the models, we now use them to ask what they can and cannot predict, and we hold the answers to the same standard either way. When our own evidence shows that a baseline signature does not reproduce, that becomes the finding rather than a result to be reframed.</p>
-
-      <p>The same toolkit is not confined to the clinic. Comparative and functional genomics answer questions about environmental bacteria and plant roots just as well, and we take those on where the biology is interesting — because the methods travel even when the subject does not.</p>
+      <p>We spent a decade building the material — patient-derived organoids and cell lines across colorectal, pancreatic, breast and brain tumors — and now ask what such models can and cannot predict. When a signature does not reproduce, that becomes the finding.</p>
     </div>
 
     <div class="themes">
-      <article class="theme">
-        <div>
-          <div class="theme-label"><span class="idx">Theme</span>Patient-derived models of human cancer</div>
-          <p>Tumors grown outside the patient, as organoids and as continuous cell lines, then characterized against the tissue they came from — which mutations survive the transition, which expression programs hold, and how sensitivity to drugs and radiation can be measured directly. The models are biobanked and distributed, so they outlive any single study.</p>
-          <div class="tags"><span class="tag">organoids</span><span class="tag">cell lines</span><span class="tag">WES / WGS</span><span class="tag">methylation</span><span class="tag">ex vivo drug panels</span><span class="tag">biobanking</span></div>
-        </div>
-        <figure class="theme-fig">
-          <button type="button" data-full="img/ga_models.png" data-cap="Multifocal organoid capturing of colon cancer: each region of one tumor becomes its own organoid and cell line; driver mutations sit in a shared trunk while private mutations and drug response diverge. The tree and the response grid are schematic. After Kim et al., Advanced Science 2022.">
-            <img src="img/ga_models.png" alt="Graphical abstract in three panels: one colon tumor sampled at several regions, each grown as a separate organoid and cell line; a mutation tree with a shared trunk and private branches beside a schematic grid of diverging drug responses; and four take-aways, biobank, trunk, branches and faithful" loading="lazy">
-          </button>
-          <figcaption>Regions of one tumor share a trunk but respond differently to the same drugs · after <a href="https://doi.org/10.1002/advs.202103360">Kim et al., Adv Sci 2022</a></figcaption>
-        </figure>
+      <article class="theme" id="theme-1">
+        <div class="theme-label"><a class="idx" href="#slide-1" data-slide="0">Theme 01 · see figure ↑</a>Patient-derived models of human cancer</div>
+        <p>Tumors grown outside the patient as organoids and cell lines, characterized against the tissue they came from, tested with drugs and radiation, then biobanked and shared.</p>
+        <div class="tags"><span class="tag">organoids</span><span class="tag">cell lines</span><span class="tag">WES / WGS</span><span class="tag">drug panels</span><span class="tag">biobanking</span></div>
       </article>
-
-      <article class="theme">
-        <div>
-          <div class="theme-label"><span class="idx">Theme</span>Predicting response to treatment</div>
-          <p>Our deepest case is rectal cancer, where chemoradiation precedes surgery and the response is graded directly. Using paired biopsies taken before and after therapy, organoids irradiated ex vivo, and a re-analysis of every suitable public cohort, we test where the response signal actually lives — and found that baseline expression carries much less of it than the field assumes.</p>
-          <div class="tags"><span class="tag">paired biopsies</span><span class="tag">RNA-seq</span><span class="tag">ex vivo irradiation</span><span class="tag">Olink</span><span class="tag">cross-cohort replication</span></div>
-        </div>
-        <figure class="theme-fig">
-          <button type="button" data-full="img/ga_response.png" data-cap="Where the response signal lives in rectal cancer: baseline expression pooled across public pre-treatment cohorts sits close to chance, whereas the Wnt/Notch change under treatment points the same way in organoids, cell lines and paired patient biopsies.">
-            <img src="img/ga_response.png" alt="Graphical abstract in three panels: paired irradiation of patient-derived rectal organoids; a forest plot in which public pre-treatment cohorts scatter around chance; and the Wnt/Notch change under treatment pointing toward poor responders in all six paired datasets" loading="lazy">
-          </button>
-          <figcaption>Baseline expression sits close to chance; the change under treatment points one way in every paired dataset</figcaption>
-        </figure>
+      <article class="theme" id="theme-2">
+        <div class="theme-label"><a class="idx" href="#slide-2" data-slide="1">Theme 02 · see figure ↑</a>Predicting response to treatment</div>
+        <p>In rectal cancer, paired biopsies, irradiated organoids and public cohorts show where the response signal lives: less in baseline expression than assumed, more in the change under treatment.</p>
+        <div class="tags"><span class="tag">paired biopsies</span><span class="tag">RNA-seq</span><span class="tag">ex vivo irradiation</span><span class="tag">cross-cohort replication</span></div>
       </article>
-
-      <article class="theme">
-        <div>
-          <div class="theme-label"><span class="idx">Theme</span>Reading the tumor from blood and gut</div>
-          <p>A tumor leaves traces well beyond itself. We measure the gut and oral microbiome, the peripheral blood transcriptome, and plasma cell-free DNA in the same patients before any treatment, to learn what a first liquid biopsy is really reporting — tumor burden, or the state of the host carrying it.</p>
-          <div class="tags"><span class="tag">16S rRNA</span><span class="tag">blood transcriptome</span><span class="tag">WGS</span><span class="tag">methylation</span><span class="tag">cell-free DNA</span></div>
-        </div>
-        <figure class="theme-fig">
-          <button type="button" data-full="img/ga_bloodgut.png" data-cap="Colorectal cancer profiled before treatment: in about one third of patients oral bacteria reach the gut, and this coincides with a higher blood myeloid signature and a lower plasma cell-free DNA variant load, independently of stage. Association, not a causal chain.">
-            <img src="img/ga_bloodgut.png" alt="Graphical abstract in three panels: microbiome, blood cells and plasma sampled from the same patient; oral genera that are common in saliva and reach stool in one in three patients; and the accompanying pattern, higher myeloid signatures and a lower plasma cell-free DNA variant load" loading="lazy">
-          </button>
-          <figcaption>Gut, blood and plasma move together — three coupled axes, association not cause</figcaption>
-        </figure>
+      <article class="theme" id="theme-3">
+        <div class="theme-label"><a class="idx" href="#slide-3" data-slide="2">Theme 03 · see figure ↑</a>Reading the tumor from blood and gut</div>
+        <p>Gut and oral microbiome, blood transcriptome and plasma cell-free DNA from the same untreated patients, to learn whether a liquid biopsy reports the tumor or the host carrying it.</p>
+        <div class="tags"><span class="tag">16S rRNA</span><span class="tag">blood transcriptome</span><span class="tag">methylation</span><span class="tag">cell-free DNA</span></div>
       </article>
-
-      <article class="theme">
-        <div>
-          <div class="theme-label"><span class="idx">Theme</span>Multi-modal machine learning, audited</div>
-          <p>Cross-attention models that fuse mutations, expression, protein and whole-slide histology to predict drug sensitivity — together with the less glamorous half of the work: checking whether the retrospective outcome labels such models learn from mean what they are assumed to mean, and reporting the drug classes where a simple linear baseline wins.</p>
-          <div class="tags"><span class="tag">cross-attention</span><span class="tag">attention MIL</span><span class="tag">pathology foundation models</span><span class="tag">nested CV</span><span class="tag">label audit</span></div>
-        </div>
-        <figure class="theme-fig">
-          <button type="button" data-full="img/ga_dp.jpg" data-cap="PathOmicDRP: cross-attention fusion of four modalities across a pan-cancer cohort">
-            <img src="img/ga_dp.jpg" alt="Graphical abstract of the PathOmicDRP framework across breast, colorectal and lung adenocarcinoma cohorts" loading="lazy">
-          </button>
-          <figcaption>Graphical abstract, PathOmicDRP pan-cancer framework</figcaption>
-        </figure>
+      <article class="theme" id="theme-4">
+        <div class="theme-label"><a class="idx" href="#slide-4" data-slide="3">Theme 04 · see figure ↑</a>Multi-modal machine learning, audited</div>
+        <p>Cross-attention models that fuse mutations, expression, protein and histology to predict drug sensitivity, and the audit that goes with them: do the labels mean what we assume, and where does a linear baseline win?</p>
+        <div class="tags"><span class="tag">cross-attention</span><span class="tag">attention MIL</span><span class="tag">pathology foundation models</span><span class="tag">label audit</span></div>
       </article>
-
-      <article class="theme">
-        <div>
-          <div class="theme-label"><span class="idx">Theme</span>Genomes beyond the clinic</div>
-          <p>The same comparative and functional genomics, applied where the biology is interesting rather than clinical: mining livestock-waste metagenomes for bacteria that precipitate carbonate and could turn waste into building material, and reading plant root transcriptomes to test whether a polyphenol acts in planta on the proton pump it inhibits in a test tube.</p>
-          <div class="tags"><span class="tag">metagenome-assembled genomes</span><span class="tag">pangenome</span><span class="tag">selection analysis</span><span class="tag">structure prediction</span><span class="tag">plant RNA-seq</span></div>
-        </div>
-        <figure class="theme-fig">
-          <button type="button" data-full="img/ga_up.jpg" data-cap="Livestock-waste metagenomes yield two convergent lineages with a vertically inherited ure–cah module">
-            <img src="img/ga_up.jpg" alt="Graphical abstract showing 111 metagenome-assembled genomes from four waste streams and the six carrying a complete carbonate-precipitation module" loading="lazy">
-          </button>
-          <figcaption>Graphical abstract, livestock-waste MICP genome survey</figcaption>
-        </figure>
+      <article class="theme" id="theme-5">
+        <div class="theme-label"><a class="idx" href="#slide-5" data-slide="4">Theme 05 · see figure ↑</a>Genomes beyond the clinic</div>
+        <p>The same genomics where the biology is interesting: carbonate-precipitating bacteria in livestock-waste metagenomes, and plant root transcriptomes under a polyphenol.</p>
+        <div class="tags"><span class="tag">metagenome-assembled genomes</span><span class="tag">pangenome</span><span class="tag">structure prediction</span><span class="tag">plant RNA-seq</span></div>
       </article>
     </div>
   </section>
@@ -510,8 +559,7 @@
       <div class="person-body">
         <div class="pname">Soon-Chan Kim, PhD <span class="mono" style="font-size:.8rem;color:var(--faint);">김순찬</span></div>
         <div class="ptitle">Assistant Professor · Division of AI Data Science<br>The University of Suwon</div>
-        <p class="bio">Soon-Chan Kim works where clinical oncology data meets computational biology. Before joining the University of Suwon in 2025, he spent a decade at the Cancer Research Institute and Korean Cell Line Bank of Seoul National University College of Medicine, establishing and characterizing patient-derived cancer cell lines and organoids across colorectal, pancreatic, breast and brain tumors — work that produced most of his published record.</p>
-        <p>His current research applies AI-driven multi-omics analysis to treatment response and computational drug-efficacy screening, and he continues to collaborate closely with surgical, radiation-oncology and pathology groups at Seoul National University Hospital. He also serves as Academic Director of the Korean Cell Line Research Foundation, and teaches machine learning at the University of Suwon.</p>
+        <p class="bio">Soon-Chan Kim works where clinical oncology data meets computational biology. He spent a decade at the Cancer Research Institute and Korean Cell Line Bank, Seoul National University College of Medicine, establishing patient-derived cancer cell lines and organoids, and joined the University of Suwon in 2025. He now applies multi-omics and machine learning to treatment response with clinical groups at Seoul National University Hospital, and serves as Academic Director of the Korean Cell Line Research Foundation.</p>
 
         <div class="cv">
           <div class="cv-row"><span class="yr">2025 –</span><span class="what">Assistant Professor<small>Division of AI Data Science, The University of Suwon</small></span></div>
@@ -589,6 +637,8 @@
       </div>
     </div>
 
+    <details class="more-pubs">
+      <summary>Show 5 earlier papers, 2018–2020</summary>
     <div class="pub">
       <span class="yr">2020</span>
       <div class="pub-body">
@@ -632,6 +682,7 @@
         <p class="authors"><b>Kim SC</b>, Shin YK, Kim YA, Jang SG, Ku JL</p>
         <p class="venue"><em>BMC Cancer</em> 18, 594 · <a href="https://doi.org/10.1186/s12885-018-4514-3">10.1186/s12885-018-4514-3</a></p>
       </div>
+    </details>
     </div>
 
     <p class="pub-note">These are first-author papers. A full list, including collaborative work and book chapters, is on the <a href="https://www.suwon.ac.kr/mainHp/prointro/detail.html?eno=1255130">University of Suwon faculty page</a> and in <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Kim+Soon-Chan%5BAuthor%5D">PubMed</a>.</p>
@@ -644,7 +695,7 @@
       <span class="eyebrow">Life in the lab</span>
     </div>
 
-    <p class="photo-intro">Pictures of the group, the workspace and the things we get up to away from the screen. This page is new — photographs are being collected and will appear here.</p>
+    <p class="photo-intro">Photographs of the group and the workspace are being collected and will appear here.</p>
 
     <div class="gallery">
       <figure class="slot">
@@ -683,20 +734,19 @@
 
     <div class="join-grid">
       <div class="join-prose">
-        <p>We work with real clinical data, which means the interesting part of the job is rarely the model. It is deciding what a number means: whether two cohorts can be compared, why a sample count changed between analyses, whether a signal survives correction, and when the honest answer is that the data cannot tell.</p>
-        <p>You do not need a biology degree to start, and you do not need to be a strong programmer to start. You do need to be willing to become both, and to be uncomfortable when a result looks too good.</p>
-        <p>Projects available now range from organoid and biopsy transcriptomics, to multi-modal deep learning on pathology slides, to comparative genomics of environmental bacteria. We will match the project to what you want to learn.</p>
+        <p>We work with real clinical data, so the interesting part of the job is rarely the model. It is deciding what a number means, and when the honest answer is that the data cannot tell.</p>
+        <p>You need neither a biology degree nor strong programming to start, only the willingness to grow into both. Projects span organoid and biopsy transcriptomics, deep learning on pathology slides, and bacterial genomics.</p>
       </div>
 
       <div class="looking">
         <h4>What helps</h4>
         <ul>
-          <li><b>Python or R</b> — enough to write your own analysis, not only to run someone else's notebook.</li>
-          <li><b>Statistics you can defend</b> — knowing when a test is the wrong test matters more than knowing many tests.</li>
-          <li><b>Curiosity about the biology</b>, whether or not you have studied it formally.</li>
-          <li><b>Care with detail</b> — most errors we catch are bookkeeping errors, and they are caught by people who check.</li>
+          <li><b>Python or R</b>, enough to write your own analysis.</li>
+          <li><b>Statistics you can defend.</b></li>
+          <li><b>Curiosity about the biology.</b></li>
+          <li><b>Care with detail</b>: most errors are bookkeeping errors.</li>
         </ul>
-        <p class="apply">To apply, email a short note about what you would like to work on and why, with a CV or transcript. Undergraduates interested in a research internship are welcome to write as well.</p>
+        <p class="apply">To apply, email a short note on what you would like to work on, with a CV or transcript. Undergraduate interns are welcome.</p>
       </div>
     </div>
   </section>
@@ -732,7 +782,7 @@
     </div>
 
     <footer>
-      We are glad to hear from clinical groups with paired sampling designs, and from anyone holding a rectal cancer cohort with both pre- and on-treatment material. Analysis code is released with each manuscript.
+      We are glad to hear from clinical groups with paired pre- and on-treatment sampling. Analysis code is released with each manuscript.
     </footer>
   </section>
 
@@ -775,6 +825,40 @@
       }, { rootMargin: '-15% 0px -70% 0px' });
       sections.forEach(function(s){ if (s) obs.observe(s); });
     }
+
+    /* showcase carousel: native scroll-snap, arrows, dots, gentle autoplay */
+    (function(){
+      var track = document.getElementById('show-track'); if (!track) return;
+      var slides = Array.prototype.slice.call(track.children);
+      var dotsBox = document.getElementById('show-dots'), cur = 0, timer = null, paused = false;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function go(i){ cur = (i + slides.length) % slides.length; track.scrollTo({left: slides[cur].offsetLeft - track.offsetLeft, behavior: reduce ? 'auto' : 'smooth'}); }
+      var dots = slides.map(function(sl, i){
+        var d = document.createElement('button'); d.type = 'button';
+        d.setAttribute('aria-label', 'Show slide ' + (i + 1));
+        d.addEventListener('click', function(){ go(i); stop(); });
+        dotsBox.appendChild(d); return d;
+      });
+      function mark(){
+        var i = Math.round(track.scrollLeft / track.clientWidth); cur = Math.max(0, Math.min(slides.length - 1, i));
+        dots.forEach(function(d, k){ d.setAttribute('aria-current', k === cur ? 'true' : 'false'); });
+      }
+      track.addEventListener('scroll', function(){ window.requestAnimationFrame(mark); }, {passive: true});
+      mark();
+      document.querySelector('.show-nav.prev').addEventListener('click', function(){ go(cur - 1); stop(); });
+      document.querySelector('.show-nav.next').addEventListener('click', function(){ go(cur + 1); stop(); });
+      function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+      function start(){ if (reduce || timer) return; timer = setInterval(function(){ if (!paused && !document.hidden && !document.querySelector('.lightbox')) go(cur + 1); }, 6500); }
+      var sc = document.getElementById('showcase');
+      ['mouseenter','focusin','touchstart'].forEach(function(ev){ sc.addEventListener(ev, function(){ paused = true; }, {passive: true}); });
+      ['mouseleave','focusout'].forEach(function(ev){ sc.addEventListener(ev, function(){ paused = false; }); });
+      start();
+      /* "see figure" links in the theme cards jump to the matching slide */
+      document.addEventListener('click', function(e){
+        var a = e.target.closest('a[data-slide]'); if (!a) return;
+        e.preventDefault(); stop(); sc.scrollIntoView({block: 'start'}); go(+a.getAttribute('data-slide'));
+      });
+    })();
 
     /* lightbox for the theme figures */
     var box = null;
