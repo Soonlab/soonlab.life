@@ -14,6 +14,7 @@
 <meta property="og:image" content="https://soonlab.life/img/ga_models.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
   :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
   html{scroll-behavior:smooth}
@@ -100,12 +101,14 @@
     font-family:"IBM Plex Mono",ui-monospace,monospace;
     font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
     color:var(--ink);font-weight:600;text-decoration:none;white-space:nowrap;
+    display:inline-flex;align-items:center;gap:10px;
   }
+  .wordmark .logo{width:28px;height:28px;flex:none;}
   .wordmark span{color:var(--teal);}
   nav.menu{display:flex;gap:2px;flex-wrap:wrap;margin-left:auto;align-items:center;}
   nav.menu a{
     font-family:"IBM Plex Mono",ui-monospace,monospace;
-    font-size:.72rem;letter-spacing:.04em;
+    font-size:.875rem;letter-spacing:.03em;
     color:var(--muted);text-decoration:none;
     padding:6px 9px;border-radius:2px;white-space:nowrap;
   }
@@ -113,18 +116,28 @@
   nav.menu a.active{color:var(--teal);background:var(--teal-soft);}
   .theme-toggle{
     font-family:"IBM Plex Mono",ui-monospace,monospace;
-    font-size:.72rem;color:var(--muted);
+    font-size:.875rem;color:var(--muted);
     background:none;border:1px solid var(--rule);border-radius:2px;
     padding:5px 9px;cursor:pointer;
   }
   .theme-toggle:hover{color:var(--teal);border-color:var(--teal);}
+  @media (max-width:640px){
+    .topbar-inner{gap:0 20px;padding-block:6px 4px;}
+    nav.menu{
+      flex-wrap:nowrap;overflow-x:auto;margin-left:-9px;max-width:calc(100% + 18px);
+      scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    }
+    nav.menu::-webkit-scrollbar{display:none;}
+  }
 
   /* ---------------- hero ---------------- */
-  header.hero{padding-block:76px 52px;border-bottom:1px solid var(--rule);}
+  header.hero{padding-block:64px 52px;border-bottom:1px solid var(--rule);}
   .hero-grid{display:grid;gap:34px;}
   @media (min-width:860px){
     .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:64px;align-items:start;}
   }
+  .hero-logo{display:block;width:84px;height:84px;margin:0 0 26px -5px;}
+  @media (max-width:640px){ .hero-logo{width:64px;height:64px;margin-bottom:20px;} }
   .hero h1 span{display:block;color:var(--teal);}
   .hangul{
     font-family:"IBM Plex Mono",ui-monospace,monospace;
@@ -141,6 +154,7 @@
 
   /* ---------------- sections ---------------- */
   section{padding-block:66px 0;scroll-margin-top:72px;}
+  @media (max-width:900px){ section{scroll-margin-top:96px;} }
   .sec-head{
     display:flex;align-items:baseline;justify-content:space-between;
     gap:14px;flex-wrap:wrap;
@@ -334,6 +348,13 @@
   }
   .cblock a{border-bottom:1px solid var(--rule);padding-bottom:2px;}
   .cblock a:hover{color:var(--teal);border-bottom-color:var(--teal);}
+  .endmark{
+    display:flex;flex-direction:column;align-items:center;gap:12px;
+    margin-top:84px;padding-top:34px;border-top:1px solid var(--rule);text-align:center;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faint);
+  }
+  .endmark svg{width:40px;height:40px;}
   footer{
     margin-top:76px;padding-top:24px;border-top:1px solid var(--rule);
     font-family:"IBM Plex Mono",ui-monospace,monospace;
@@ -344,9 +365,11 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="lab-logo" viewBox="0 0 64 64"><rect x="34.63" y="6.54" width="11.2" height="11.2" rx="2" fill="var(--teal)"/><rect x="46.26" y="18.17" width="11.2" height="11.2" rx="2" fill="var(--coral)"/><rect x="46.26" y="34.63" width="11.2" height="11.2" rx="2" fill="var(--teal)"/><circle cx="40.23" cy="51.86" r="6.0" fill="none" stroke="var(--teal)" stroke-width="3.4"/><circle cx="23.77" cy="51.86" r="6.0" fill="none" stroke="var(--teal)" stroke-width="3.4"/><circle cx="12.14" cy="40.23" r="6.0" fill="none" stroke="var(--teal)" stroke-width="3.4"/><circle cx="12.14" cy="23.77" r="6.0" fill="none" stroke="var(--teal)" stroke-width="3.4"/><circle cx="23.77" cy="12.14" r="6.0" fill="none" stroke="var(--teal)" stroke-width="3.4"/></symbol></svg>
+
 <div class="topbar">
   <div class="topbar-inner">
-    <a class="wordmark" href="#top">Translational <span>Bioinformatics</span> Lab</a>
+    <a class="wordmark" href="#top"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#lab-logo"/></svg>Translational <span>Bioinformatics</span> Lab</a>
     <nav class="menu" id="menu">
       <a href="#goal">Our Goal</a>
       <a href="#people">People</a>
@@ -364,6 +387,7 @@
   <header class="hero">
     <div class="hero-grid">
       <div>
+        <svg class="hero-logo" viewBox="0 0 64 64" role="img" aria-label="Translational Bioinformatics Lab logo"><use href="#lab-logo"/></svg>
         <h1>Translational<br>Bioinformatics <span>Lab</span></h1>
         <div class="hangul">중개생물정보학 연구실 · 수원대학교 AI데이터사이언스부</div>
       </div>
@@ -405,10 +429,10 @@
           <div class="tags"><span class="tag">organoids</span><span class="tag">cell lines</span><span class="tag">WES / WGS</span><span class="tag">methylation</span><span class="tag">ex vivo drug panels</span><span class="tag">biobanking</span></div>
         </div>
         <figure class="theme-fig">
-          <button type="button" data-full="img/ga_models.png" data-cap="Patient-derived models of human cancer: organoids and cell lines characterized against the original tumor">
-            <img src="img/ga_models.png" alt="Diagram: patient tumor giving rise to organoids and cell lines, each characterized by sequencing, methylation and drug panels" loading="lazy">
+          <button type="button" data-full="img/ga_models.png" data-cap="Multifocal organoid capturing of colon cancer: each region of one tumor becomes its own organoid and cell line; driver mutations sit in a shared trunk while private mutations and drug response diverge. The tree and the response grid are schematic. After Kim et al., Advanced Science 2022.">
+            <img src="img/ga_models.png" alt="Graphical abstract in three panels: one colon tumor sampled at several regions, each grown as a separate organoid and cell line; a mutation tree with a shared trunk and private branches beside a schematic grid of diverging drug responses; and four take-aways, biobank, trunk, branches and faithful" loading="lazy">
           </button>
-          <figcaption>Patient tumours become living models that keep the original genome</figcaption>
+          <figcaption>Regions of one tumor share a trunk but respond differently to the same drugs · after <a href="https://doi.org/10.1002/advs.202103360">Kim et al., Adv Sci 2022</a></figcaption>
         </figure>
       </article>
 
@@ -419,10 +443,10 @@
           <div class="tags"><span class="tag">paired biopsies</span><span class="tag">RNA-seq</span><span class="tag">ex vivo irradiation</span><span class="tag">Olink</span><span class="tag">cross-cohort replication</span></div>
         </div>
         <figure class="theme-fig">
-          <button type="button" data-full="img/ga_response.png" data-cap="Where the response signal lives: baseline expression versus treatment-induced change">
-            <img src="img/ga_response.png" alt="Diagram contrasting a weak baseline expression signal across 17 cohorts with a reproducible treatment-induced change across 6 paired datasets" loading="lazy">
+          <button type="button" data-full="img/ga_response.png" data-cap="Where the response signal lives in rectal cancer: baseline expression pooled across public pre-treatment cohorts sits close to chance, whereas the Wnt/Notch change under treatment points the same way in organoids, cell lines and paired patient biopsies.">
+            <img src="img/ga_response.png" alt="Graphical abstract in three panels: paired irradiation of patient-derived rectal organoids; a forest plot in which public pre-treatment cohorts scatter around chance; and the Wnt/Notch change under treatment pointing toward poor responders in all six paired datasets" loading="lazy">
           </button>
-          <figcaption>Baseline leaves the cohort mixed; paired sampling separates it</figcaption>
+          <figcaption>Baseline expression sits close to chance; the change under treatment points one way in every paired dataset</figcaption>
         </figure>
       </article>
 
@@ -433,10 +457,10 @@
           <div class="tags"><span class="tag">16S rRNA</span><span class="tag">blood transcriptome</span><span class="tag">WGS</span><span class="tag">methylation</span><span class="tag">cell-free DNA</span></div>
         </div>
         <figure class="theme-fig">
-          <button type="button" data-full="img/ga_bloodgut.png" data-cap="Six sample types in the same treatment-naive patients, and the three coupled axes they reveal">
-            <img src="img/ga_bloodgut.png" alt="Diagram of six sample types feeding three coupled axes: oral pathobionts in the gut, peripheral myeloid state, and plasma cell-free DNA variant load" loading="lazy">
+          <button type="button" data-full="img/ga_bloodgut.png" data-cap="Colorectal cancer profiled before treatment: in about one third of patients oral bacteria reach the gut, and this coincides with a higher blood myeloid signature and a lower plasma cell-free DNA variant load, independently of stage. Association, not a causal chain.">
+            <img src="img/ga_bloodgut.png" alt="Graphical abstract in three panels: microbiome, blood cells and plasma sampled from the same patient; oral genera that are common in saliva and reach stool in one in three patients; and the accompanying pattern, higher myeloid signatures and a lower plasma cell-free DNA variant load" loading="lazy">
           </button>
-          <figcaption>Three measurements that move together — association, not cause</figcaption>
+          <figcaption>Gut, blood and plasma move together — three coupled axes, association not cause</figcaption>
         </figure>
       </article>
 
@@ -707,6 +731,11 @@
       We are glad to hear from clinical groups with paired sampling designs, and from anyone holding a rectal cancer cohort with both pre- and on-treatment material. Analysis code is released with each manuscript.
     </footer>
   </section>
+
+  <div class="endmark">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><use href="#lab-logo"/></svg>
+    <span>Translational Bioinformatics Lab · The University of Suwon</span>
+  </div>
 
 </div>
 
