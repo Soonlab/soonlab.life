@@ -110,40 +110,38 @@
   nav.menu{display:flex;gap:2px;flex-wrap:wrap;margin-left:auto;align-items:center;}
   nav.menu a{
     font-family:var(--mono);
-    font-size:.875rem;letter-spacing:.03em;
+    font-size:.8rem;letter-spacing:.02em;
     color:var(--muted);text-decoration:none;
-    padding:6px 9px;border-radius:2px;white-space:nowrap;
+    padding:6px 8px;border-radius:2px;white-space:nowrap;
   }
   nav.menu a:hover{color:var(--ink);background:var(--rule-soft);}
   nav.menu a.active{color:var(--teal);background:var(--teal-soft);}
   .theme-toggle{
     font-family:var(--mono);
-    font-size:.875rem;color:var(--muted);
+    font-size:.8rem;color:var(--muted);
     background:none;border:1px solid var(--rule);border-radius:2px;
-    padding:5px 9px;cursor:pointer;
+    padding:5px 8px;cursor:pointer;
   }
   .theme-toggle:hover{color:var(--teal);border-color:var(--teal);}
-  /* one row whenever it fits: compact the menu a little on narrow laptops */
-  @media (max-width:1100px){
+  /* the bar never wraps above phone width; it steps down instead */
+  .topbar-inner{flex-wrap:nowrap;}
+  nav.menu{flex-wrap:nowrap;min-width:0;}
+  @media (max-width:1080px){
     .topbar-inner{gap:14px;}
-    nav.menu a{font-size:.8rem;letter-spacing:.02em;padding:6px 7px;}
-    .theme-toggle{font-size:.8rem;padding:5px 7px;}
+    nav.menu a{font-size:.74rem;letter-spacing:.01em;padding:6px 6px;}
+    .theme-toggle{font-size:.74rem;padding:5px 6px;}
+    .wordmark{font-size:.7rem;letter-spacing:.08em;}
   }
-  /* narrower than that: logo-only wordmark so the menu still shares the row */
-  @media (max-width:1040px){
-    .topbar-inner{flex-wrap:nowrap;}
+  @media (max-width:960px){
     .wordmark{font-size:0;gap:0;}
     .wordmark .logo{width:30px;height:30px;}
-    nav.menu{
-      flex-wrap:nowrap;overflow-x:auto;min-width:0;
-      scrollbar-width:none;-webkit-overflow-scrolling:touch;
-    }
+    nav.menu{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
     nav.menu::-webkit-scrollbar{display:none;}
   }
   /* phones: wordmark row, then the menu as one horizontally scrollable row */
-  @media (max-width:760px){
+  @media (max-width:700px){
     .topbar-inner{flex-wrap:wrap;gap:0 20px;padding-block:6px 4px;}
-    .wordmark{font-size:.74rem;gap:10px;}
+    .wordmark{font-size:.74rem;letter-spacing:.1em;gap:10px;}
     .wordmark .logo{width:28px;height:28px;}
     nav.menu{flex:1 0 100%;margin-left:-9px;max-width:calc(100% + 18px);}
   }
@@ -179,7 +177,7 @@
 
   /* ---------------- sections ---------------- */
   section{padding-block:66px 0;scroll-margin-top:72px;}
-  @media (max-width:760px){ section, .showcase{scroll-margin-top:96px;} }
+  @media (max-width:700px){ section, .showcase{scroll-margin-top:96px;} }
   .sec-head{
     display:flex;align-items:baseline;justify-content:space-between;
     gap:14px;flex-wrap:wrap;
