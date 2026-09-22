@@ -227,6 +227,33 @@
   .show-dots button::before{content:"";width:18px;height:3px;border-radius:2px;background:var(--rule);transition:background .2s,width .2s;}
   .show-dots button[aria-current="true"]::before{background:var(--teal);width:26px;}
 
+  /* ---------------- news ---------------- */
+  #news{padding-block:54px 0;}
+  .news-list{display:grid;gap:0;}
+  .news{
+    display:grid;grid-template-columns:minmax(0,1fr);gap:6px;
+    padding-block:18px;border-bottom:1px solid var(--rule-soft);
+  }
+  @media (min-width:800px){ .news{grid-template-columns:7.5rem minmax(0,1fr);gap:28px;} }
+  .news time{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.78rem;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:3px;
+  }
+  .news-body{display:grid;gap:6px;max-width:68ch;}
+  .news-body .t{font-size:1.04rem;color:var(--ink);line-height:1.38;}
+  .news-body .t .badge{
+    display:inline-block;vertical-align:.12em;margin-right:8px;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.66rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--teal);background:var(--teal-soft);
+    border-radius:2px;padding:2px 6px;
+  }
+  .news-body .d{color:var(--muted);font-size:.95rem;line-height:1.55;}
+  .news-body .d em{font-style:normal;color:var(--ink);}
+  .news-body .ko{
+    font-family:"Newsreader",Georgia,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    color:var(--muted);font-size:.9rem;line-height:1.6;
+  }
+
   /* ---------------- people ---------------- */
   .person{
     display:grid;grid-template-columns:minmax(0,1fr);gap:26px;
@@ -409,6 +436,7 @@
   <div class="topbar-inner">
     <a class="wordmark" href="#top"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#lab-logo"/></svg>Translational <span>Bioinformatics</span> Lab</a>
     <nav class="menu" id="menu">
+      <a href="#news">News</a>
       <a href="#goal">Our Goal</a>
       <a href="#people">People</a>
       <a href="#publications">Publications</a>
@@ -502,6 +530,24 @@
     </div>
     <div class="show-dots" id="show-dots"></div>
   </div>
+
+  <!-- ============ NEWS ============ -->
+  <section id="news">
+    <div class="sec-head">
+      <h2>News</h2>
+      <span class="eyebrow">Grants, papers and people</span>
+    </div>
+    <div class="news-list">
+      <div class="news">
+        <time datetime="2026-09-01">2026.09.01</time>
+        <div class="news-body">
+          <div class="t"><span class="badge">Grant</span>Selected for a National Research Foundation of Korea (NRF) Excellent Research – Core Research (Basic Research B) grant, 2026.09.01 – 2029.08.31</div>
+          <p class="d"><em>Building a dynamic response map from pre-treatment biopsies and multi-timepoint omics to predict response to total neoadjuvant therapy in locally advanced rectal cancer.</em></p>
+          <p class="ko" lang="ko">한국연구재단 우수연구-핵심연구(기본연구B) 과제 선정 (26.09.01. ~ 29.08.31.) · 국소진행성 직장암 전체선행화학요법 반응 예측을 위한 치료 전 생검 및 다중시점 오믹스 기반 동적 반응지도 구축</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ OUR GOAL ============ -->
   <section id="goal">
