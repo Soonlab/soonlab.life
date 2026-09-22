@@ -11,7 +11,7 @@
 <meta property="og:site_name" content="Translational Bioinformatics Lab">
 <meta property="og:title" content="Translational Bioinformatics Lab">
 <meta property="og:description" content="What in a tumor actually carries information about how a patient will respond? Patient-derived models, multi-omics and machine learning at The University of Suwon.">
-<meta property="og:image" content="https://soonlab.life/img/ga_models.png">
+<meta property="og:image" content="https://soonlab.life/img/ga_lineage.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -498,52 +498,62 @@
   <div class="showcase" id="showcase" role="region" aria-roledescription="carousel" aria-label="Research themes">
     <div class="show-frame">
       <ul class="show-track" id="show-track">
-        <li class="slide" id="slide-1" aria-roledescription="slide" aria-label="1 of 5: Patient-derived models of human cancer">
-          <button type="button" class="slide-img" data-full="img/ga_models.png" data-cap-ko="대장암의 다초점 오가노이드 확보: 한 종양의 각 영역을 별도의 오가노이드와 세포주로 만들면, 드라이버 변이는 공유된 줄기에 자리하고 개별 변이와 약물 반응은 갈라진다. 계통수와 반응 격자는 모식도. Kim et al., Advanced Science 2022 참조." data-cap="Multifocal organoid capturing of colon cancer: each region of one tumor becomes its own organoid and cell line; driver mutations sit in a shared trunk while private mutations and drug response diverge. The tree and the response grid are schematic. After Kim et al., Advanced Science 2022.">
-            <img src="img/ga_models.png" alt="Graphical abstract in three panels: one colon tumor sampled at several regions, each grown as a separate organoid and cell line; a mutation tree with a shared trunk and private branches beside a schematic grid of diverging drug responses; and four take-aways, biobank, trunk, branches and faithful" width="1200" height="640" fetchpriority="high">
+        <li class="slide" id="slide-6" aria-roledescription="slide" aria-label="1 of 6: Lineage programs behind pan-cancer drug-sensitivity prediction">
+          <button type="button" class="slide-img" data-full="img/ga_lineage.png" data-cap-ko="유방암·대장암·폐선암을 아우르는 범암 약물감수성 예측: 모델이 배우는 전사체 특징은 정본 드라이버 유전자가 아니라 계통·분화 프로그램이며, 모델은 학습하지 않은 암종으로 옮겨 가고, 기여도는 전사체에 있으며, stemness 지수가 높을수록 측정된 세포주 데이터에서 대부분의 약물에 더 민감하다. 라벨은 발현에서 추정한 값이며, 임상 검증이 아닌 연관이다." data-cap="Pan-cancer drug-sensitivity prediction across breast, colorectal and lung adenocarcinoma: the transcript features the model learns are lineage and differentiation programs rather than canonical driver genes; models transfer to a cancer type never seen in training; attribution sits in the transcriptome; and a higher stemness index goes with greater sensitivity to most drugs in measured cell-line data. Labels are expression-imputed; associations, not clinical validation.">
+            <img src="img/ga_lineage.png" alt="Graphical abstract: three cancer cohorts and three molecular blocks feed a cross-attention model trained on expression-imputed drug sensitivity; four findings follow, lineage and differentiation features, transfer to unseen cancer types, signal in the transcriptome, and a stemness index that tracks sensitivity; a closing statement notes the expression-imputed framework and its limits" width="2400" height="1573" fetchpriority="high">
           </button>
           <div class="slide-cap">
-            <span class="slide-n">01 / 05</span>
+            <span class="slide-n">01 / 06</span>
+            <a data-i18n="slide6.t" class="slide-t" href="#theme-6">Lineage programs behind pan-cancer drug-sensitivity prediction</a>
+            <span data-i18n="slide6.l" class="slide-l">Models trained on three carcinomas read a shared differentiation axis, transfer to unseen cancer types, and track a stemness–sensitivity relationship</span>
+          </div>
+        </li>
+        <li class="slide" id="slide-1" aria-roledescription="slide" aria-label="2 of 6: Patient-derived models of human cancer">
+          <button type="button" class="slide-img" data-full="img/ga_models.png" data-cap-ko="대장암의 다초점 오가노이드 확보: 한 종양의 각 영역을 별도의 오가노이드와 세포주로 만들면, 드라이버 변이는 공유된 줄기에 자리하고 개별 변이와 약물 반응은 갈라진다. 계통수와 반응 격자는 모식도. Kim et al., Advanced Science 2022 참조." data-cap="Multifocal organoid capturing of colon cancer: each region of one tumor becomes its own organoid and cell line; driver mutations sit in a shared trunk while private mutations and drug response diverge. The tree and the response grid are schematic. After Kim et al., Advanced Science 2022.">
+            <img src="img/ga_models.png" alt="Graphical abstract in three panels: one colon tumor sampled at several regions, each grown as a separate organoid and cell line; a mutation tree with a shared trunk and private branches beside a schematic grid of diverging drug responses; and four take-aways, biobank, trunk, branches and faithful" width="1200" height="640" loading="lazy">
+          </button>
+          <div class="slide-cap">
+            <span class="slide-n">02 / 06</span>
             <a data-i18n="slide1.t" class="slide-t" href="#theme-1">Patient-derived models of human cancer</a>
             <span data-i18n="slide1.l" class="slide-l">Regions of one tumor share a trunk but respond differently to the same drugs · after <a href="https://doi.org/10.1002/advs.202103360">Kim et al., Adv Sci 2022</a></span>
           </div>
         </li>
-        <li class="slide" id="slide-2" aria-roledescription="slide" aria-label="2 of 5: Predicting response to treatment">
+        <li class="slide" id="slide-2" aria-roledescription="slide" aria-label="3 of 6: Predicting response to treatment">
           <button type="button" class="slide-img" data-full="img/ga_response.png" data-cap-ko="직장암에서 반응 신호가 있는 곳: 공개 치료 전 코호트를 모은 기저 발현은 우연 수준에 가까운 반면, 치료 중 Wnt/Notch 변화는 오가노이드·세포주·짝지은 환자 생검에서 같은 방향을 가리킨다." data-cap="Where the response signal lives in rectal cancer: baseline expression pooled across public pre-treatment cohorts sits close to chance, whereas the Wnt/Notch change under treatment points the same way in organoids, cell lines and paired patient biopsies.">
             <img src="img/ga_response.png" alt="Graphical abstract in three panels: paired irradiation of patient-derived rectal organoids; a forest plot in which public pre-treatment cohorts scatter around chance; and the Wnt/Notch change under treatment pointing toward poor responders in all six paired datasets" width="1200" height="640" loading="lazy">
           </button>
           <div class="slide-cap">
-            <span class="slide-n">02 / 05</span>
+            <span class="slide-n">03 / 06</span>
             <a data-i18n="slide2.t" class="slide-t" href="#theme-2">Predicting response to treatment</a>
             <span data-i18n="slide2.l" class="slide-l">Baseline expression sits close to chance; the change under treatment points one way</span>
           </div>
         </li>
-        <li class="slide" id="slide-3" aria-roledescription="slide" aria-label="3 of 5: Reading the tumor from blood and gut">
+        <li class="slide" id="slide-3" aria-roledescription="slide" aria-label="4 of 6: Reading the tumor from blood and gut">
           <button type="button" class="slide-img" data-full="img/ga_bloodgut.png" data-cap-ko="치료 전 대장암 프로파일: 환자 약 3분의 1에서 구강 세균이 장에 도달하며, 이는 병기와 무관하게 혈액 골수계 시그니처 상승 및 혈장 무세포 DNA 변이 부하 감소와 함께 나타난다. 인과 사슬이 아닌 연관." data-cap="Colorectal cancer profiled before treatment: in about one third of patients oral bacteria reach the gut, and this coincides with a higher blood myeloid signature and a lower plasma cell-free DNA variant load, independently of stage. Association, not a causal chain.">
             <img src="img/ga_bloodgut.png" alt="Graphical abstract in three panels: microbiome, blood cells and plasma sampled from the same patient; oral genera that are common in saliva and reach stool in one in three patients; and the accompanying pattern, higher myeloid signatures and a lower plasma cell-free DNA variant load" width="1200" height="640" loading="lazy">
           </button>
           <div class="slide-cap">
-            <span class="slide-n">03 / 05</span>
+            <span class="slide-n">04 / 06</span>
             <a data-i18n="slide3.t" class="slide-t" href="#theme-3">Reading the tumor from blood and gut</a>
             <span data-i18n="slide3.l" class="slide-l">Gut, blood and plasma move together: association, not cause</span>
           </div>
         </li>
-        <li class="slide" id="slide-4" aria-roledescription="slide" aria-label="4 of 5: Multi-modal machine learning, audited">
+        <li class="slide" id="slide-4" aria-roledescription="slide" aria-label="5 of 6: Multi-modal machine learning, audited">
           <button type="button" class="slide-img" data-full="img/ga_dp.jpg" data-cap-ko="PathOmicDRP: 범암 코호트에서 네 가지 모달리티를 교차 어텐션으로 융합" data-cap="PathOmicDRP: cross-attention fusion of four modalities across a pan-cancer cohort">
             <img src="img/ga_dp.jpg" alt="Graphical abstract of the PathOmicDRP framework across breast, colorectal and lung adenocarcinoma cohorts" width="1200" height="734" loading="lazy">
           </button>
           <div class="slide-cap">
-            <span class="slide-n">04 / 05</span>
+            <span class="slide-n">05 / 06</span>
             <a data-i18n="slide4.t" class="slide-t" href="#theme-4">Multi-modal machine learning, audited</a>
             <span data-i18n="slide4.l" class="slide-l">Four data modalities fused to predict drug sensitivity, then audited</span>
           </div>
         </li>
-        <li class="slide" id="slide-5" aria-roledescription="slide" aria-label="5 of 5: Genomes beyond the clinic">
+        <li class="slide" id="slide-5" aria-roledescription="slide" aria-label="6 of 6: Genomes beyond the clinic">
           <button type="button" class="slide-img" data-full="img/ga_up.jpg" data-cap-ko="축산 폐기물 메타게놈에서 수직 유전된 ure–cah 모듈을 가진 두 수렴 계통을 찾다" data-cap="Livestock-waste metagenomes yield two convergent lineages with a vertically inherited ure–cah module">
             <img src="img/ga_up.jpg" alt="Graphical abstract showing 111 metagenome-assembled genomes from four waste streams and the six carrying a complete carbonate-precipitation module" width="1200" height="663" loading="lazy">
           </button>
           <div class="slide-cap">
-            <span class="slide-n">05 / 05</span>
+            <span class="slide-n">06 / 06</span>
             <a data-i18n="slide5.t" class="slide-t" href="#theme-5">Genomes beyond the clinic</a>
             <span data-i18n="slide5.l" class="slide-l">Waste-stream metagenomes mined for bacteria that precipitate carbonate</span>
           </div>
@@ -573,29 +583,34 @@
 
     <div class="themes">
       <article class="theme" id="theme-1">
-        <div data-i18n="theme1.label" class="theme-label"><a class="idx" href="#slide-1" data-slide="0">Theme 01 · see figure ↑</a>Patient-derived models of human cancer</div>
+        <div data-i18n="theme1.label" class="theme-label"><a class="idx" href="#slide-1" data-slide="1">Theme 01 · see figure ↑</a>Patient-derived models of human cancer</div>
         <p data-i18n="theme1.p">Tumors grown outside the patient as organoids and cell lines, characterized against the tissue they came from, tested with drugs and radiation, then biobanked and shared.</p>
         <div class="tags"><span class="tag">organoids</span><span class="tag">cell lines</span><span class="tag">WES / WGS</span><span class="tag">drug panels</span><span class="tag">biobanking</span></div>
       </article>
       <article class="theme" id="theme-2">
-        <div data-i18n="theme2.label" class="theme-label"><a class="idx" href="#slide-2" data-slide="1">Theme 02 · see figure ↑</a>Predicting response to treatment</div>
+        <div data-i18n="theme2.label" class="theme-label"><a class="idx" href="#slide-2" data-slide="2">Theme 02 · see figure ↑</a>Predicting response to treatment</div>
         <p data-i18n="theme2.p">In rectal cancer, paired biopsies, irradiated organoids and public cohorts show where the response signal lives: less in baseline expression than assumed, more in the change under treatment.</p>
         <div class="tags"><span class="tag">paired biopsies</span><span class="tag">RNA-seq</span><span class="tag">ex vivo irradiation</span><span class="tag">cross-cohort replication</span></div>
       </article>
       <article class="theme" id="theme-3">
-        <div data-i18n="theme3.label" class="theme-label"><a class="idx" href="#slide-3" data-slide="2">Theme 03 · see figure ↑</a>Reading the tumor from blood and gut</div>
+        <div data-i18n="theme3.label" class="theme-label"><a class="idx" href="#slide-3" data-slide="3">Theme 03 · see figure ↑</a>Reading the tumor from blood and gut</div>
         <p data-i18n="theme3.p">Gut and oral microbiome, blood transcriptome and plasma cell-free DNA from the same untreated patients, to learn whether a liquid biopsy reports the tumor or the host carrying it.</p>
         <div class="tags"><span class="tag">16S rRNA</span><span class="tag">blood transcriptome</span><span class="tag">methylation</span><span class="tag">cell-free DNA</span></div>
       </article>
       <article class="theme" id="theme-4">
-        <div data-i18n="theme4.label" class="theme-label"><a class="idx" href="#slide-4" data-slide="3">Theme 04 · see figure ↑</a>Multi-modal machine learning, audited</div>
+        <div data-i18n="theme4.label" class="theme-label"><a class="idx" href="#slide-4" data-slide="4">Theme 04 · see figure ↑</a>Multi-modal machine learning, audited</div>
         <p data-i18n="theme4.p">Cross-attention models that fuse mutations, expression, protein and histology to predict drug sensitivity, and the audit that goes with them: do the labels mean what we assume, and where does a linear baseline win?</p>
         <div class="tags"><span class="tag">cross-attention</span><span class="tag">attention MIL</span><span class="tag">pathology foundation models</span><span class="tag">label audit</span></div>
       </article>
       <article class="theme" id="theme-5">
-        <div data-i18n="theme5.label" class="theme-label"><a class="idx" href="#slide-5" data-slide="4">Theme 05 · see figure ↑</a>Genomes beyond the clinic</div>
+        <div data-i18n="theme5.label" class="theme-label"><a class="idx" href="#slide-5" data-slide="5">Theme 05 · see figure ↑</a>Genomes beyond the clinic</div>
         <p data-i18n="theme5.p">The same genomics where the biology is interesting: carbonate-precipitating bacteria in livestock-waste metagenomes, and plant root transcriptomes under a polyphenol.</p>
         <div class="tags"><span class="tag">metagenome-assembled genomes</span><span class="tag">pangenome</span><span class="tag">structure prediction</span><span class="tag">plant RNA-seq</span></div>
+      </article>
+      <article class="theme" id="theme-6">
+        <div data-i18n="theme6.label" class="theme-label"><a class="idx" href="#slide-6" data-slide="0">Theme 06 · see figure ↑</a>Lineage programs behind pan-cancer drug prediction</div>
+        <p data-i18n="theme6.p">What a multi-omics model actually learns when it predicts drug sensitivity across cancers: lineage and differentiation programs rather than driver mutations, a shared axis that carries over to cancer types it never saw, and a stemness index that tracks sensitivity in measured cell-line pharmacology.</p>
+        <div class="tags"><span class="tag">pan-cancer</span><span class="tag">TCGA · GDSC</span><span class="tag">cross-attention</span><span class="tag">leave-one-cancer-out</span><span class="tag">stemness index</span></div>
       </article>
     </div>
   </section>
@@ -892,6 +907,8 @@
  "slide4.l": "네 가지 데이터를 융합해 약물 감수성을 예측하고, 그 결과를 감사한다",
  "slide5.t": "병원 밖의 유전체",
  "slide5.l": "폐기물 메타게놈에서 탄산염을 침전시키는 세균을 찾다",
+ "slide6.t": "범암 약물감수성 예측 뒤의 계통 프로그램",
+ "slide6.l": "세 암종으로 학습한 모델이 공통 분화 축을 읽고, 학습하지 않은 암종으로 옮겨 가며, stemness와 감수성의 관계를 따라간다",
  "news.h2": "뉴스",
  "news.eye": "과제 · 논문 · 구성원 소식",
  "news1.t": "<span class=\"badge\">과제</span>한국연구재단 우수연구-핵심연구(기본연구B) 과제 선정 (2026.09.01 – 2029.08.31)",
@@ -901,16 +918,18 @@
  "goal.p1": "두 환자가 같은 암 치료를 받습니다. 한 종양은 사라지고, 다른 종양은 거의 변하지 않습니다. 우리의 목표는 두 환자를 미리 구분해 주는 측정값을 찾는 것이며, 동시에 주어진 데이터에 그런 측정값이 없을 때는 그 사실을 분명히 말하는 것입니다.",
  "goal.pull": "한 코호트에서는 반응군을 가르고 다음 코호트에서는 실패하는 시그니처는 약한 바이오마커가 아닙니다. 대개 질문을 잘못된 시점에 던졌거나, 잘못된 측정값을 골랐다는 신호입니다.",
  "goal.p3": "우리는 지난 10년간 대장암·췌장암·유방암·뇌종양의 환자유래 오가노이드와 세포주라는 재료를 만들어 왔고, 이제 그 모델이 무엇을 예측할 수 있고 무엇을 예측할 수 없는지 묻습니다. 시그니처가 재현되지 않으면, 그것이 곧 결과가 됩니다.",
- "theme1.label": "<a class=\"idx\" href=\"#slide-1\" data-slide=\"0\">주제 01 · 그림 보기 ↑</a>환자유래 암 모델",
+ "theme1.label": "<a class=\"idx\" href=\"#slide-1\" data-slide=\"1\">주제 01 · 그림 보기 ↑</a>환자유래 암 모델",
  "theme1.p": "환자 밖에서 오가노이드와 세포주로 키운 종양을 원래 조직과 대조해 특성화하고, 약물과 방사선으로 시험한 뒤, 바이오뱅크에 보관하고 공유합니다.",
- "theme2.label": "<a class=\"idx\" href=\"#slide-2\" data-slide=\"1\">주제 02 · 그림 보기 ↑</a>치료 반응 예측",
+ "theme2.label": "<a class=\"idx\" href=\"#slide-2\" data-slide=\"2\">주제 02 · 그림 보기 ↑</a>치료 반응 예측",
  "theme2.p": "직장암에서 짝지은 생검, 방사선을 조사한 오가노이드, 공개 코호트는 반응 신호가 어디에 있는지 보여 줍니다. 흔히 가정하는 치료 전 발현보다는, 치료 중의 변화에 더 많이 있습니다.",
- "theme3.label": "<a class=\"idx\" href=\"#slide-3\" data-slide=\"2\">주제 03 · 그림 보기 ↑</a>혈액과 장에서 종양 읽기",
+ "theme3.label": "<a class=\"idx\" href=\"#slide-3\" data-slide=\"3\">주제 03 · 그림 보기 ↑</a>혈액과 장에서 종양 읽기",
  "theme3.p": "치료받지 않은 같은 환자에서 얻은 장·구강 미생물, 혈액 전사체, 혈장 무세포 DNA로, 액체생검이 종양을 말하는지 아니면 종양을 지닌 숙주를 말하는지 알아봅니다.",
- "theme4.label": "<a class=\"idx\" href=\"#slide-4\" data-slide=\"3\">주제 04 · 그림 보기 ↑</a>다중모달 기계학습, 그리고 검증",
+ "theme4.label": "<a class=\"idx\" href=\"#slide-4\" data-slide=\"4\">주제 04 · 그림 보기 ↑</a>다중모달 기계학습, 그리고 검증",
  "theme4.p": "변이·발현·단백질·조직 영상을 융합해 약물 감수성을 예측하는 교차 어텐션 모델, 그리고 그에 따르는 감사: 라벨은 우리가 가정한 뜻을 갖는가, 선형 기준선이 이기는 지점은 어디인가?",
- "theme5.label": "<a class=\"idx\" href=\"#slide-5\" data-slide=\"4\">주제 05 · 그림 보기 ↑</a>병원 밖의 유전체",
+ "theme5.label": "<a class=\"idx\" href=\"#slide-5\" data-slide=\"5\">주제 05 · 그림 보기 ↑</a>병원 밖의 유전체",
  "theme5.p": "생물학이 흥미로운 곳이면 어디든 같은 유전체학을 적용합니다. 축산 폐기물 메타게놈의 탄산염 침전 세균, 그리고 폴리페놀 처리 아래의 식물 뿌리 전사체.",
+ "theme6.label": "<a class=\"idx\" href=\"#slide-6\" data-slide=\"0\">주제 06 · 그림 보기 ↑</a>범암 약물 예측 뒤의 계통 프로그램",
+ "theme6.p": "다중오믹스 모델이 여러 암종에 걸쳐 약물 감수성을 예측할 때 실제로 배우는 것: 드라이버 변이가 아닌 계통·분화 프로그램, 학습하지 않은 암종으로 옮겨 가는 공통 축, 그리고 측정된 세포주 약리 데이터에서 감수성을 따라가는 stemness 지수.",
  "people.h2": "구성원",
  "people.eye": "연구책임자",
  "people.name": "김순찬 <span class=\"mono\" style=\"font-size:.8rem;color:var(--faint);\">Soon-Chan Kim, PhD</span>",
