@@ -20,8 +20,8 @@ Publications, Photos, Join Us, Contact.
 
 The page is bilingual. English lives in the markup; every translated element carries a
 `data-i18n="key"` attribute and the Korean text for that key sits in the `KO` dictionary in the
-first `<script>` block at the end of `index.html`. The Korean/English button in the top bar swaps
-them (choice kept in `localStorage`, `?lang=ko` forces Korean). Lightbox captions use
+first `<script>` block at the end of `index.html`. Korean is shown first; the Korean/English button in the top
+bar swaps them (choice kept in `localStorage`, `?lang=en` / `?lang=ko` force a language). Lightbox captions use
 `data-cap-ko` next to `data-cap`. When adding or editing text, change both the markup and the
 matching `KO` entry; a key with no dictionary entry simply stays in English.
 

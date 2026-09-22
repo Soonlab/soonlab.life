@@ -15,6 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script>document.documentElement.setAttribute('data-lang-pending','');</script>
 <style>
   :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
   html{scroll-behavior:smooth}
@@ -22,6 +23,7 @@
   body{margin:0}
   img{max-width:100%}
   [hidden]{display:none!important}
+  html[data-lang-pending] body{visibility:hidden}
 </style>
 <title>Translational Bioinformatics Lab</title>
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -970,13 +972,14 @@
         btn.setAttribute('aria-label', lang === 'ko' ? '영어로 보기' : 'View in Korean');
       }
     }
-    var lang = 'en';
+    var lang = 'ko';  /* Korean first; English on request or by stored choice */
     try {
       var q = new URLSearchParams(location.search).get('lang');
       var st = localStorage.getItem('tbl-lang');
       if (q === 'ko' || q === 'en') lang = q; else if (st === 'ko' || st === 'en') lang = st;
     } catch (e) {}
     if (lang === 'ko') apply('ko');
+    root.removeAttribute('data-lang-pending');
     if (btn) btn.addEventListener('click', function(){
       lang = (root.getAttribute('lang') === 'ko') ? 'en' : 'ko';
       apply(lang);
