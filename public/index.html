@@ -129,14 +129,23 @@
     nav.menu a{font-size:.8rem;letter-spacing:.02em;padding:6px 7px;}
     .theme-toggle{font-size:.8rem;padding:5px 7px;}
   }
-  /* narrower than that: wordmark row, then the menu as one horizontally scrollable row */
+  /* narrower than that: logo-only wordmark so the menu still shares the row */
   @media (max-width:1040px){
-    .topbar-inner{gap:0 20px;padding-block:6px 4px;}
+    .topbar-inner{flex-wrap:nowrap;}
+    .wordmark{font-size:0;gap:0;}
+    .wordmark .logo{width:30px;height:30px;}
     nav.menu{
-      flex:1 0 100%;flex-wrap:nowrap;overflow-x:auto;margin-left:-9px;max-width:calc(100% + 18px);
+      flex-wrap:nowrap;overflow-x:auto;min-width:0;
       scrollbar-width:none;-webkit-overflow-scrolling:touch;
     }
     nav.menu::-webkit-scrollbar{display:none;}
+  }
+  /* phones: wordmark row, then the menu as one horizontally scrollable row */
+  @media (max-width:760px){
+    .topbar-inner{flex-wrap:wrap;gap:0 20px;padding-block:6px 4px;}
+    .wordmark{font-size:.74rem;gap:10px;}
+    .wordmark .logo{width:28px;height:28px;}
+    nav.menu{flex:1 0 100%;margin-left:-9px;max-width:calc(100% + 18px);}
   }
 
   .lang-toggle{margin-left:4px;}
@@ -170,7 +179,7 @@
 
   /* ---------------- sections ---------------- */
   section{padding-block:66px 0;scroll-margin-top:72px;}
-  @media (max-width:1040px){ section, .showcase{scroll-margin-top:96px;} }
+  @media (max-width:760px){ section, .showcase{scroll-margin-top:96px;} }
   .sec-head{
     display:flex;align-items:baseline;justify-content:space-between;
     gap:14px;flex-wrap:wrap;
@@ -243,7 +252,6 @@
   .show-dots button[aria-current="true"]::before{background:var(--teal);width:26px;}
 
   /* ---------------- news ---------------- */
-  #news{padding-block:54px 0;}
   .news-list{display:grid;gap:0;}
   .news{
     display:grid;grid-template-columns:minmax(0,1fr);gap:6px;
@@ -451,8 +459,8 @@
   <div class="topbar-inner">
     <a class="wordmark" href="#top"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#lab-logo"/></svg>Translational <span>Bioinformatics</span> Lab</a>
     <nav class="menu" id="menu">
-      <a data-i18n="nav.news" href="#news">News</a>
       <a data-i18n="nav.goal" href="#goal">Our Goal</a>
+      <a data-i18n="nav.news" href="#news">News</a>
       <a data-i18n="nav.people" href="#people">People</a>
       <a data-i18n="nav.pubs" href="#publications">Publications</a>
       <a data-i18n="nav.photos" href="#photos">Photos</a>
@@ -547,23 +555,6 @@
     <div class="show-dots" id="show-dots"></div>
   </div>
 
-  <!-- ============ NEWS ============ -->
-  <section id="news">
-    <div class="sec-head">
-      <h2 data-i18n="news.h2">News</h2>
-      <span data-i18n="news.eye" class="eyebrow">Grants, papers and people</span>
-    </div>
-    <div class="news-list">
-      <div class="news">
-        <time datetime="2026-09-01">2026.09.01</time>
-        <div class="news-body">
-          <div data-i18n="news1.t" class="t"><span class="badge">Grant</span>Selected for a National Research Foundation of Korea (NRF) Excellent Research – Core Research (Basic Research B) grant, 2026.09.01 – 2029.08.31</div>
-          <p data-i18n="news1.d" class="d"><em>Building a dynamic response map from pre-treatment biopsies and multi-timepoint omics to predict response to total neoadjuvant therapy in locally advanced rectal cancer.</em></p>
-          <p class="ko" lang="ko">한국연구재단 우수연구-핵심연구(기본연구B) 과제 선정 (26.09.01. ~ 29.08.31.) · 국소진행성 직장암 전체선행화학요법 반응 예측을 위한 치료 전 생검 및 다중시점 오믹스 기반 동적 반응지도 구축</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ============ OUR GOAL ============ -->
   <section id="goal">
@@ -606,6 +597,24 @@
         <p data-i18n="theme5.p">The same genomics where the biology is interesting: carbonate-precipitating bacteria in livestock-waste metagenomes, and plant root transcriptomes under a polyphenol.</p>
         <div class="tags"><span class="tag">metagenome-assembled genomes</span><span class="tag">pangenome</span><span class="tag">structure prediction</span><span class="tag">plant RNA-seq</span></div>
       </article>
+    </div>
+  </section>
+
+  <!-- ============ NEWS ============ -->
+  <section id="news">
+    <div class="sec-head">
+      <h2 data-i18n="news.h2">News</h2>
+      <span data-i18n="news.eye" class="eyebrow">Grants, papers and people</span>
+    </div>
+    <div class="news-list">
+      <div class="news">
+        <time datetime="2026-09-01">2026.09.01</time>
+        <div class="news-body">
+          <div data-i18n="news1.t" class="t"><span class="badge">Grant</span>Selected for a National Research Foundation of Korea (NRF) Excellent Research – Core Research (Basic Research B) grant, 2026.09.01 – 2029.08.31</div>
+          <p data-i18n="news1.d" class="d"><em>Building a dynamic response map from pre-treatment biopsies and multi-timepoint omics to predict response to total neoadjuvant therapy in locally advanced rectal cancer.</em></p>
+          <p class="ko" lang="ko">한국연구재단 우수연구-핵심연구(기본연구B) 과제 선정 (26.09.01. ~ 29.08.31.) · 국소진행성 직장암 전체선행화학요법 반응 예측을 위한 치료 전 생검 및 다중시점 오믹스 기반 동적 반응지도 구축</p>
+        </div>
+      </div>
     </div>
   </section>
 

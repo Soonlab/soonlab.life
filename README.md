@@ -15,7 +15,7 @@ asset is served from this directory.
 
 ## Editing
 
-Edit `index.html` directly. Section order follows the nav: News, Our Goal, People,
+Edit `index.html` directly. Section order follows the nav: Our Goal, News, People,
 Publications, Photos, Join Us, Contact.
 
 The page is bilingual. English lives in the markup; every translated element carries a
