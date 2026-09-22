@@ -27,6 +27,8 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
+    --serif:"Newsreader",Georgia,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","NanumGothic",serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","NanumGothic",monospace;
     --paper:#f5f7f5;
     --surface:#ffffff;
     --ink:#121c1a;
@@ -62,7 +64,7 @@
 
   body{
     background:var(--paper); color:var(--body);
-    font-family:"Newsreader",Georgia,"Times New Roman",serif;
+    font-family:var(--serif);
     font-size:17px; line-height:1.62;
     -webkit-font-smoothing:antialiased;
     padding-inline:24px;
@@ -77,9 +79,9 @@
   a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:2px;}
   a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px;}
   img{display:block;max-width:100%;}
-  .mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;}
+  .mono{font-family:var(--mono);}
   .eyebrow{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
     color:var(--faint);font-weight:500;
   }
@@ -98,7 +100,7 @@
     min-height:56px;flex-wrap:wrap;
   }
   .wordmark{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
     color:var(--ink);font-weight:600;text-decoration:none;white-space:nowrap;
     display:inline-flex;align-items:center;gap:10px;
@@ -107,7 +109,7 @@
   .wordmark span{color:var(--teal);}
   nav.menu{display:flex;gap:2px;flex-wrap:wrap;margin-left:auto;align-items:center;}
   nav.menu a{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.875rem;letter-spacing:.03em;
     color:var(--muted);text-decoration:none;
     padding:6px 9px;border-radius:2px;white-space:nowrap;
@@ -115,7 +117,7 @@
   nav.menu a:hover{color:var(--ink);background:var(--rule-soft);}
   nav.menu a.active{color:var(--teal);background:var(--teal-soft);}
   .theme-toggle{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.875rem;color:var(--muted);
     background:none;border:1px solid var(--rule);border-radius:2px;
     padding:5px 9px;cursor:pointer;
@@ -130,6 +132,12 @@
     nav.menu::-webkit-scrollbar{display:none;}
   }
 
+  .lang-toggle{margin-left:4px;}
+  html[lang="ko"]{word-break:keep-all;}
+  html[lang="ko"] h1{letter-spacing:-.01em;}
+  html[lang="ko"] .news .ko{display:none;}
+  html[lang="ko"] .lead em{font-style:normal;font-weight:500;}
+
   /* ---------------- hero ---------------- */
   header.hero{padding-block:46px 34px;}
   .hero-grid{display:grid;gap:34px;}
@@ -141,14 +149,14 @@
   @media (max-width:640px){ .hero-title{gap:16px;} .hero-logo{width:62px;height:62px;margin-top:2px;} }
   .hero h1 span{display:block;color:var(--teal);}
   .hangul{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.78rem;letter-spacing:.1em;color:var(--faint);padding-top:16px;
   }
   .lead{font-size:1.2rem;line-height:1.55;color:var(--body);max-width:52ch;}
   .lead em{font-style:italic;color:var(--ink);}
   .hero-meta{
     display:grid;gap:8px;padding-top:22px;
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.76rem;line-height:1.5;color:var(--muted);
   }
   .hero-meta .where{color:var(--ink);font-weight:500;}
@@ -177,7 +185,7 @@
   }
   .theme-label{color:var(--ink);font-size:1.18rem;line-height:1.32;padding-bottom:10px;}
   .theme-label .idx{
-    display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;
+    display:block;font-family:var(--mono);
     font-size:.63rem;letter-spacing:.12em;color:var(--faint);
     text-transform:uppercase;padding-bottom:7px;text-decoration:none;
   }
@@ -185,7 +193,7 @@
   .theme p{color:var(--muted);font-size:.98rem;}
   .tags{display:flex;flex-wrap:wrap;gap:6px;padding-top:13px;}
   .tag{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.68rem;color:var(--muted);
     border:1px solid var(--rule);border-radius:2px;
     padding:2px 7px;background:var(--surface);
@@ -208,10 +216,10 @@
     display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;
     padding:13px 18px 14px;border-top:1px solid var(--rule);
   }
-  .slide-n{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.1em;color:var(--faint);}
+  .slide-n{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--faint);}
   .slide-t{font-size:1.12rem;color:var(--ink);text-decoration:none;}
   .slide-t:hover{color:var(--teal);}
-  .slide-l{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem;color:var(--muted);line-height:1.5;}
+  .slide-l{font-family:var(--mono);font-size:.7rem;color:var(--muted);line-height:1.5;}
   .show-nav{
     position:absolute;top:calc(50% - 46px);width:40px;height:40px;border-radius:50%;
     border:1px solid var(--rule);background:var(--nav-bg);color:var(--ink);
@@ -236,21 +244,21 @@
   }
   @media (min-width:800px){ .news{grid-template-columns:7.5rem minmax(0,1fr);gap:28px;} }
   .news time{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.78rem;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:3px;
   }
   .news-body{display:grid;gap:6px;max-width:68ch;}
   .news-body .t{font-size:1.04rem;color:var(--ink);line-height:1.38;}
   .news-body .t .badge{
     display:inline-block;vertical-align:.12em;margin-right:8px;
-    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.66rem;letter-spacing:.08em;
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;
     text-transform:uppercase;color:var(--teal);background:var(--teal-soft);
     border-radius:2px;padding:2px 6px;
   }
   .news-body .d{color:var(--muted);font-size:.95rem;line-height:1.55;}
   .news-body .d em{font-style:normal;color:var(--ink);}
   .news-body .ko{
-    font-family:"Newsreader",Georgia,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    font-family:var(--serif);
     color:var(--muted);font-size:.9rem;line-height:1.6;
   }
 
@@ -275,13 +283,13 @@
   :root[data-theme="dark"] .portrait.has-photo img{filter:brightness(.9);}
   @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .portrait.has-photo img{filter:brightness(.9);} }
   .portrait span{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.66rem;letter-spacing:.08em;color:var(--faint);text-transform:uppercase;line-height:1.7;
   }
   .person-body{display:grid;gap:13px;}
   .person-body .pname{font-size:1.4rem;color:var(--ink);}
   .person-body .ptitle{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.76rem;color:var(--teal);letter-spacing:.03em;line-height:1.6;
   }
   .person-body p{max-width:62ch;color:var(--muted);}
@@ -298,7 +306,7 @@
     .cv-row{grid-template-columns:7.5rem minmax(0,1fr);gap:20px;align-items:baseline;}
   }
   .cv-row .yr{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.73rem;color:var(--faint);font-variant-numeric:tabular-nums;
   }
   .cv-row .what{font-size:.96rem;color:var(--body);}
@@ -320,14 +328,14 @@
     .pub{grid-template-columns:4.5rem minmax(0,1fr);gap:28px;}
   }
   .more-pubs summary{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.78rem;letter-spacing:.04em;
+    font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;
     color:var(--teal);cursor:pointer;padding-block:18px;border-bottom:1px solid var(--rule-soft);list-style:none;
   }
   .more-pubs summary::-webkit-details-marker{display:none;}
   .more-pubs summary::before{content:"+ ";}
   .more-pubs[open] summary::before{content:"− ";}
   .pub .yr{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.78rem;color:var(--faint);font-variant-numeric:tabular-nums;
     padding-top:3px;
   }
@@ -336,7 +344,7 @@
   .pub-body .authors{color:var(--muted);font-size:.9rem;line-height:1.5;}
   .pub-body .authors b{color:var(--ink);font-weight:600;}
   .pub-body .venue{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.73rem;color:var(--muted);
   }
   .pub-body .venue em{font-style:normal;color:var(--ink);}
@@ -357,7 +365,7 @@
     display:grid;place-items:center;text-align:center;padding:14px;
   }
   .frame span{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);
   }
   figure.slot figcaption{font-size:.92rem;color:var(--muted);line-height:1.45;}
@@ -370,14 +378,14 @@
   .lightbox img{max-width:min(96vw,1100px);max-height:84vh;width:auto;border-radius:3px;background:#fff;}
   .lightbox .close{
     position:absolute;top:16px;right:16px;
-    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.72rem;
+    font-family:var(--mono);font-size:.72rem;
     color:#e9efec;background:rgba(255,255,255,.1);
     border:1px solid rgba(255,255,255,.3);border-radius:2px;
     padding:6px 11px;cursor:pointer;letter-spacing:.06em;
   }
   .lightbox .cap{
     position:absolute;bottom:18px;left:0;right:0;text-align:center;
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.72rem;color:#c3cfcb;padding-inline:24px;
   }
 
@@ -403,11 +411,11 @@
   @media (min-width:760px){.contact-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:56px;}}
   .cblock{display:grid;gap:10px;align-content:start;}
   .cblock .clabel{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);
   }
   .cblock a,.cblock address,.cblock .plain{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.84rem;font-style:normal;line-height:1.65;color:var(--ink);
     text-decoration:none;width:fit-content;
   }
@@ -416,13 +424,13 @@
   .endmark{
     display:flex;flex-direction:column;align-items:center;gap:12px;
     margin-top:84px;padding-top:34px;border-top:1px solid var(--rule);text-align:center;
-    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.1em;
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;
     text-transform:uppercase;color:var(--faint);
   }
   .endmark svg{width:40px;height:40px;}
   footer{
     margin-top:76px;padding-top:24px;border-top:1px solid var(--rule);
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-family:var(--mono);
     font-size:.72rem;color:var(--faint);line-height:1.7;max-width:64ch;
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
@@ -436,14 +444,15 @@
   <div class="topbar-inner">
     <a class="wordmark" href="#top"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#lab-logo"/></svg>Translational <span>Bioinformatics</span> Lab</a>
     <nav class="menu" id="menu">
-      <a href="#news">News</a>
-      <a href="#goal">Our Goal</a>
-      <a href="#people">People</a>
-      <a href="#publications">Publications</a>
-      <a href="#photos">Photos</a>
-      <a href="#join">Join Us</a>
-      <a href="#contact">Contact</a>
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">Theme</button>
+      <a data-i18n="nav.news" href="#news">News</a>
+      <a data-i18n="nav.goal" href="#goal">Our Goal</a>
+      <a data-i18n="nav.people" href="#people">People</a>
+      <a data-i18n="nav.pubs" href="#publications">Publications</a>
+      <a data-i18n="nav.photos" href="#photos">Photos</a>
+      <a data-i18n="nav.join" href="#join">Join Us</a>
+      <a data-i18n="nav.contact" href="#contact">Contact</a>
+      <button data-i18n="nav.theme" class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">Theme</button>
+      <button class="theme-toggle lang-toggle" id="lang-toggle" type="button" aria-label="View in Korean">Korean</button>
     </nav>
   </div>
 </div>
@@ -455,16 +464,16 @@
       <div>
         <div class="hero-title">
           <svg class="hero-logo" viewBox="0 0 64 64" role="img" aria-label="Translational Bioinformatics Lab logo"><use href="#lab-logo"/></svg>
-          <h1>Translational<br>Bioinformatics <span>Lab</span></h1>
+          <h1 data-i18n="hero.h1">Translational<br>Bioinformatics <span>Lab</span></h1>
         </div>
-        <div class="hangul">중개생물정보학 연구실 · 수원대학교 AI데이터사이언스부</div>
+        <div data-i18n="hero.sub" class="hangul">중개생물정보학 연구실 · 수원대학교 AI데이터사이언스부</div>
       </div>
       <div>
-        <p class="lead"><em>What in a tumor tells us how a patient will respond to treatment?</em> We look for the answer in patient-derived models, clinical biopsies, blood and the gut microbiome.</p>
+        <p data-i18n="hero.lead" class="lead"><em>What in a tumor tells us how a patient will respond to treatment?</em> We look for the answer in patient-derived models, clinical biopsies, blood and the gut microbiome.</p>
         <div class="hero-meta">
-          <span class="where">Division of AI Data Science</span>
-          <span>College of Information and Communication Technology</span>
-          <span>The University of Suwon, Hwaseong, Republic of Korea</span>
+          <span data-i18n="hero.m1" class="where">Division of AI Data Science</span>
+          <span data-i18n="hero.m2">College of Information and Communication Technology</span>
+          <span data-i18n="hero.m3">The University of Suwon, Hwaseong, Republic of Korea</span>
         </div>
       </div>
     </div>
@@ -475,53 +484,53 @@
     <div class="show-frame">
       <ul class="show-track" id="show-track">
         <li class="slide" id="slide-1" aria-roledescription="slide" aria-label="1 of 5: Patient-derived models of human cancer">
-          <button type="button" class="slide-img" data-full="img/ga_models.png" data-cap="Multifocal organoid capturing of colon cancer: each region of one tumor becomes its own organoid and cell line; driver mutations sit in a shared trunk while private mutations and drug response diverge. The tree and the response grid are schematic. After Kim et al., Advanced Science 2022.">
+          <button type="button" class="slide-img" data-full="img/ga_models.png" data-cap-ko="대장암의 다초점 오가노이드 확보: 한 종양의 각 영역을 별도의 오가노이드와 세포주로 만들면, 드라이버 변이는 공유된 줄기에 자리하고 개별 변이와 약물 반응은 갈라진다. 계통수와 반응 격자는 모식도. Kim et al., Advanced Science 2022 참조." data-cap="Multifocal organoid capturing of colon cancer: each region of one tumor becomes its own organoid and cell line; driver mutations sit in a shared trunk while private mutations and drug response diverge. The tree and the response grid are schematic. After Kim et al., Advanced Science 2022.">
             <img src="img/ga_models.png" alt="Graphical abstract in three panels: one colon tumor sampled at several regions, each grown as a separate organoid and cell line; a mutation tree with a shared trunk and private branches beside a schematic grid of diverging drug responses; and four take-aways, biobank, trunk, branches and faithful" width="1200" height="640" fetchpriority="high">
           </button>
           <div class="slide-cap">
             <span class="slide-n">01 / 05</span>
-            <a class="slide-t" href="#theme-1">Patient-derived models of human cancer</a>
-            <span class="slide-l">Regions of one tumor share a trunk but respond differently to the same drugs · after <a href="https://doi.org/10.1002/advs.202103360">Kim et al., Adv Sci 2022</a></span>
+            <a data-i18n="slide1.t" class="slide-t" href="#theme-1">Patient-derived models of human cancer</a>
+            <span data-i18n="slide1.l" class="slide-l">Regions of one tumor share a trunk but respond differently to the same drugs · after <a href="https://doi.org/10.1002/advs.202103360">Kim et al., Adv Sci 2022</a></span>
           </div>
         </li>
         <li class="slide" id="slide-2" aria-roledescription="slide" aria-label="2 of 5: Predicting response to treatment">
-          <button type="button" class="slide-img" data-full="img/ga_response.png" data-cap="Where the response signal lives in rectal cancer: baseline expression pooled across public pre-treatment cohorts sits close to chance, whereas the Wnt/Notch change under treatment points the same way in organoids, cell lines and paired patient biopsies.">
+          <button type="button" class="slide-img" data-full="img/ga_response.png" data-cap-ko="직장암에서 반응 신호가 있는 곳: 공개 치료 전 코호트를 모은 기저 발현은 우연 수준에 가까운 반면, 치료 중 Wnt/Notch 변화는 오가노이드·세포주·짝지은 환자 생검에서 같은 방향을 가리킨다." data-cap="Where the response signal lives in rectal cancer: baseline expression pooled across public pre-treatment cohorts sits close to chance, whereas the Wnt/Notch change under treatment points the same way in organoids, cell lines and paired patient biopsies.">
             <img src="img/ga_response.png" alt="Graphical abstract in three panels: paired irradiation of patient-derived rectal organoids; a forest plot in which public pre-treatment cohorts scatter around chance; and the Wnt/Notch change under treatment pointing toward poor responders in all six paired datasets" width="1200" height="640" loading="lazy">
           </button>
           <div class="slide-cap">
             <span class="slide-n">02 / 05</span>
-            <a class="slide-t" href="#theme-2">Predicting response to treatment</a>
-            <span class="slide-l">Baseline expression sits close to chance; the change under treatment points one way</span>
+            <a data-i18n="slide2.t" class="slide-t" href="#theme-2">Predicting response to treatment</a>
+            <span data-i18n="slide2.l" class="slide-l">Baseline expression sits close to chance; the change under treatment points one way</span>
           </div>
         </li>
         <li class="slide" id="slide-3" aria-roledescription="slide" aria-label="3 of 5: Reading the tumor from blood and gut">
-          <button type="button" class="slide-img" data-full="img/ga_bloodgut.png" data-cap="Colorectal cancer profiled before treatment: in about one third of patients oral bacteria reach the gut, and this coincides with a higher blood myeloid signature and a lower plasma cell-free DNA variant load, independently of stage. Association, not a causal chain.">
+          <button type="button" class="slide-img" data-full="img/ga_bloodgut.png" data-cap-ko="치료 전 대장암 프로파일: 환자 약 3분의 1에서 구강 세균이 장에 도달하며, 이는 병기와 무관하게 혈액 골수계 시그니처 상승 및 혈장 무세포 DNA 변이 부하 감소와 함께 나타난다. 인과 사슬이 아닌 연관." data-cap="Colorectal cancer profiled before treatment: in about one third of patients oral bacteria reach the gut, and this coincides with a higher blood myeloid signature and a lower plasma cell-free DNA variant load, independently of stage. Association, not a causal chain.">
             <img src="img/ga_bloodgut.png" alt="Graphical abstract in three panels: microbiome, blood cells and plasma sampled from the same patient; oral genera that are common in saliva and reach stool in one in three patients; and the accompanying pattern, higher myeloid signatures and a lower plasma cell-free DNA variant load" width="1200" height="640" loading="lazy">
           </button>
           <div class="slide-cap">
             <span class="slide-n">03 / 05</span>
-            <a class="slide-t" href="#theme-3">Reading the tumor from blood and gut</a>
-            <span class="slide-l">Gut, blood and plasma move together: association, not cause</span>
+            <a data-i18n="slide3.t" class="slide-t" href="#theme-3">Reading the tumor from blood and gut</a>
+            <span data-i18n="slide3.l" class="slide-l">Gut, blood and plasma move together: association, not cause</span>
           </div>
         </li>
         <li class="slide" id="slide-4" aria-roledescription="slide" aria-label="4 of 5: Multi-modal machine learning, audited">
-          <button type="button" class="slide-img" data-full="img/ga_dp.jpg" data-cap="PathOmicDRP: cross-attention fusion of four modalities across a pan-cancer cohort">
+          <button type="button" class="slide-img" data-full="img/ga_dp.jpg" data-cap-ko="PathOmicDRP: 범암 코호트에서 네 가지 모달리티를 교차 어텐션으로 융합" data-cap="PathOmicDRP: cross-attention fusion of four modalities across a pan-cancer cohort">
             <img src="img/ga_dp.jpg" alt="Graphical abstract of the PathOmicDRP framework across breast, colorectal and lung adenocarcinoma cohorts" width="1200" height="734" loading="lazy">
           </button>
           <div class="slide-cap">
             <span class="slide-n">04 / 05</span>
-            <a class="slide-t" href="#theme-4">Multi-modal machine learning, audited</a>
-            <span class="slide-l">Four data modalities fused to predict drug sensitivity, then audited</span>
+            <a data-i18n="slide4.t" class="slide-t" href="#theme-4">Multi-modal machine learning, audited</a>
+            <span data-i18n="slide4.l" class="slide-l">Four data modalities fused to predict drug sensitivity, then audited</span>
           </div>
         </li>
         <li class="slide" id="slide-5" aria-roledescription="slide" aria-label="5 of 5: Genomes beyond the clinic">
-          <button type="button" class="slide-img" data-full="img/ga_up.jpg" data-cap="Livestock-waste metagenomes yield two convergent lineages with a vertically inherited ure–cah module">
+          <button type="button" class="slide-img" data-full="img/ga_up.jpg" data-cap-ko="축산 폐기물 메타게놈에서 수직 유전된 ure–cah 모듈을 가진 두 수렴 계통을 찾다" data-cap="Livestock-waste metagenomes yield two convergent lineages with a vertically inherited ure–cah module">
             <img src="img/ga_up.jpg" alt="Graphical abstract showing 111 metagenome-assembled genomes from four waste streams and the six carrying a complete carbonate-precipitation module" width="1200" height="663" loading="lazy">
           </button>
           <div class="slide-cap">
             <span class="slide-n">05 / 05</span>
-            <a class="slide-t" href="#theme-5">Genomes beyond the clinic</a>
-            <span class="slide-l">Waste-stream metagenomes mined for bacteria that precipitate carbonate</span>
+            <a data-i18n="slide5.t" class="slide-t" href="#theme-5">Genomes beyond the clinic</a>
+            <span data-i18n="slide5.l" class="slide-l">Waste-stream metagenomes mined for bacteria that precipitate carbonate</span>
           </div>
         </li>
       </ul>
@@ -534,15 +543,15 @@
   <!-- ============ NEWS ============ -->
   <section id="news">
     <div class="sec-head">
-      <h2>News</h2>
-      <span class="eyebrow">Grants, papers and people</span>
+      <h2 data-i18n="news.h2">News</h2>
+      <span data-i18n="news.eye" class="eyebrow">Grants, papers and people</span>
     </div>
     <div class="news-list">
       <div class="news">
         <time datetime="2026-09-01">2026.09.01</time>
         <div class="news-body">
-          <div class="t"><span class="badge">Grant</span>Selected for a National Research Foundation of Korea (NRF) Excellent Research – Core Research (Basic Research B) grant, 2026.09.01 – 2029.08.31</div>
-          <p class="d"><em>Building a dynamic response map from pre-treatment biopsies and multi-timepoint omics to predict response to total neoadjuvant therapy in locally advanced rectal cancer.</em></p>
+          <div data-i18n="news1.t" class="t"><span class="badge">Grant</span>Selected for a National Research Foundation of Korea (NRF) Excellent Research – Core Research (Basic Research B) grant, 2026.09.01 – 2029.08.31</div>
+          <p data-i18n="news1.d" class="d"><em>Building a dynamic response map from pre-treatment biopsies and multi-timepoint omics to predict response to total neoadjuvant therapy in locally advanced rectal cancer.</em></p>
           <p class="ko" lang="ko">한국연구재단 우수연구-핵심연구(기본연구B) 과제 선정 (26.09.01. ~ 29.08.31.) · 국소진행성 직장암 전체선행화학요법 반응 예측을 위한 치료 전 생검 및 다중시점 오믹스 기반 동적 반응지도 구축</p>
         </div>
       </div>
@@ -552,42 +561,42 @@
   <!-- ============ OUR GOAL ============ -->
   <section id="goal">
     <div class="sec-head">
-      <h2>Our Goal</h2>
-      <span class="eyebrow">What we are trying to find out</span>
+      <h2 data-i18n="goal.h2">Our Goal</h2>
+      <span data-i18n="goal.eye" class="eyebrow">What we are trying to find out</span>
     </div>
 
     <div class="goal-prose">
-      <p>Two patients receive the same cancer treatment. One tumor disappears; the other barely changes. Our goal is to find the measurement that tells them apart in advance — and to be equally clear about when no such measurement exists in the data at hand.</p>
+      <p data-i18n="goal.p1">Two patients receive the same cancer treatment. One tumor disappears; the other barely changes. Our goal is to find the measurement that tells them apart in advance — and to be equally clear about when no such measurement exists in the data at hand.</p>
 
-      <p class="pull">A signature that separates responders in one cohort and fails in the next is not a weak biomarker. It is usually a sign that the question was asked at the wrong moment, or of the wrong measurement.</p>
+      <p data-i18n="goal.pull" class="pull">A signature that separates responders in one cohort and fails in the next is not a weak biomarker. It is usually a sign that the question was asked at the wrong moment, or of the wrong measurement.</p>
 
-      <p>We spent a decade building the material — patient-derived organoids and cell lines across colorectal, pancreatic, breast and brain tumors — and now ask what such models can and cannot predict. When a signature does not reproduce, that becomes the finding.</p>
+      <p data-i18n="goal.p3">We spent a decade building the material — patient-derived organoids and cell lines across colorectal, pancreatic, breast and brain tumors — and now ask what such models can and cannot predict. When a signature does not reproduce, that becomes the finding.</p>
     </div>
 
     <div class="themes">
       <article class="theme" id="theme-1">
-        <div class="theme-label"><a class="idx" href="#slide-1" data-slide="0">Theme 01 · see figure ↑</a>Patient-derived models of human cancer</div>
-        <p>Tumors grown outside the patient as organoids and cell lines, characterized against the tissue they came from, tested with drugs and radiation, then biobanked and shared.</p>
+        <div data-i18n="theme1.label" class="theme-label"><a class="idx" href="#slide-1" data-slide="0">Theme 01 · see figure ↑</a>Patient-derived models of human cancer</div>
+        <p data-i18n="theme1.p">Tumors grown outside the patient as organoids and cell lines, characterized against the tissue they came from, tested with drugs and radiation, then biobanked and shared.</p>
         <div class="tags"><span class="tag">organoids</span><span class="tag">cell lines</span><span class="tag">WES / WGS</span><span class="tag">drug panels</span><span class="tag">biobanking</span></div>
       </article>
       <article class="theme" id="theme-2">
-        <div class="theme-label"><a class="idx" href="#slide-2" data-slide="1">Theme 02 · see figure ↑</a>Predicting response to treatment</div>
-        <p>In rectal cancer, paired biopsies, irradiated organoids and public cohorts show where the response signal lives: less in baseline expression than assumed, more in the change under treatment.</p>
+        <div data-i18n="theme2.label" class="theme-label"><a class="idx" href="#slide-2" data-slide="1">Theme 02 · see figure ↑</a>Predicting response to treatment</div>
+        <p data-i18n="theme2.p">In rectal cancer, paired biopsies, irradiated organoids and public cohorts show where the response signal lives: less in baseline expression than assumed, more in the change under treatment.</p>
         <div class="tags"><span class="tag">paired biopsies</span><span class="tag">RNA-seq</span><span class="tag">ex vivo irradiation</span><span class="tag">cross-cohort replication</span></div>
       </article>
       <article class="theme" id="theme-3">
-        <div class="theme-label"><a class="idx" href="#slide-3" data-slide="2">Theme 03 · see figure ↑</a>Reading the tumor from blood and gut</div>
-        <p>Gut and oral microbiome, blood transcriptome and plasma cell-free DNA from the same untreated patients, to learn whether a liquid biopsy reports the tumor or the host carrying it.</p>
+        <div data-i18n="theme3.label" class="theme-label"><a class="idx" href="#slide-3" data-slide="2">Theme 03 · see figure ↑</a>Reading the tumor from blood and gut</div>
+        <p data-i18n="theme3.p">Gut and oral microbiome, blood transcriptome and plasma cell-free DNA from the same untreated patients, to learn whether a liquid biopsy reports the tumor or the host carrying it.</p>
         <div class="tags"><span class="tag">16S rRNA</span><span class="tag">blood transcriptome</span><span class="tag">methylation</span><span class="tag">cell-free DNA</span></div>
       </article>
       <article class="theme" id="theme-4">
-        <div class="theme-label"><a class="idx" href="#slide-4" data-slide="3">Theme 04 · see figure ↑</a>Multi-modal machine learning, audited</div>
-        <p>Cross-attention models that fuse mutations, expression, protein and histology to predict drug sensitivity, and the audit that goes with them: do the labels mean what we assume, and where does a linear baseline win?</p>
+        <div data-i18n="theme4.label" class="theme-label"><a class="idx" href="#slide-4" data-slide="3">Theme 04 · see figure ↑</a>Multi-modal machine learning, audited</div>
+        <p data-i18n="theme4.p">Cross-attention models that fuse mutations, expression, protein and histology to predict drug sensitivity, and the audit that goes with them: do the labels mean what we assume, and where does a linear baseline win?</p>
         <div class="tags"><span class="tag">cross-attention</span><span class="tag">attention MIL</span><span class="tag">pathology foundation models</span><span class="tag">label audit</span></div>
       </article>
       <article class="theme" id="theme-5">
-        <div class="theme-label"><a class="idx" href="#slide-5" data-slide="4">Theme 05 · see figure ↑</a>Genomes beyond the clinic</div>
-        <p>The same genomics where the biology is interesting: carbonate-precipitating bacteria in livestock-waste metagenomes, and plant root transcriptomes under a polyphenol.</p>
+        <div data-i18n="theme5.label" class="theme-label"><a class="idx" href="#slide-5" data-slide="4">Theme 05 · see figure ↑</a>Genomes beyond the clinic</div>
+        <p data-i18n="theme5.p">The same genomics where the biology is interesting: carbonate-precipitating bacteria in livestock-waste metagenomes, and plant root transcriptomes under a polyphenol.</p>
         <div class="tags"><span class="tag">metagenome-assembled genomes</span><span class="tag">pangenome</span><span class="tag">structure prediction</span><span class="tag">plant RNA-seq</span></div>
       </article>
     </div>
@@ -596,37 +605,37 @@
   <!-- ============ PEOPLE ============ -->
   <section id="people">
     <div class="sec-head">
-      <h2>People</h2>
-      <span class="eyebrow">Principal investigator</span>
+      <h2 data-i18n="people.h2">People</h2>
+      <span data-i18n="people.eye" class="eyebrow">Principal investigator</span>
     </div>
 
     <div class="person">
       <div class="portrait has-photo"><img src="img/pi_soonchan_kim.jpg" alt="Portrait of Soon-Chan Kim" width="591" height="739" loading="lazy"></div>
       <div class="person-body">
-        <div class="pname">Soon-Chan Kim, PhD <span class="mono" style="font-size:.8rem;color:var(--faint);">김순찬</span></div>
-        <div class="ptitle">Assistant Professor · Division of AI Data Science<br>The University of Suwon</div>
-        <p class="bio">Soon-Chan Kim works where clinical oncology data meets computational biology. He spent a decade at the Cancer Research Institute and Korean Cell Line Bank, Seoul National University College of Medicine, establishing patient-derived cancer cell lines and organoids, and joined the University of Suwon in 2025. He now applies multi-omics and machine learning to treatment response with clinical groups at Seoul National University Hospital, and serves as Academic Director of the Korean Cell Line Research Foundation.</p>
+        <div data-i18n="people.name" class="pname">Soon-Chan Kim, PhD <span class="mono" style="font-size:.8rem;color:var(--faint);">김순찬</span></div>
+        <div data-i18n="people.title" class="ptitle">Assistant Professor · Division of AI Data Science<br>The University of Suwon</div>
+        <p data-i18n="people.bio" class="bio">Soon-Chan Kim works where clinical oncology data meets computational biology. He spent a decade at the Cancer Research Institute and Korean Cell Line Bank, Seoul National University College of Medicine, establishing patient-derived cancer cell lines and organoids, and joined the University of Suwon in 2025. He now applies multi-omics and machine learning to treatment response with clinical groups at Seoul National University Hospital, and serves as Academic Director of the Korean Cell Line Research Foundation.</p>
 
         <div class="cv">
-          <div class="cv-row"><span class="yr">2025 –</span><span class="what">Assistant Professor<small>Division of AI Data Science, The University of Suwon</small></span></div>
-          <div class="cv-row"><span class="yr">– 2025</span><span class="what">Postdoctoral Researcher, then Research Assistant Professor<small>Seoul National University College of Medicine</small></span></div>
-          <div class="cv-row"><span class="yr">2014 – 2020</span><span class="what">PhD, Medical Science<small>Seoul National University College of Medicine</small></span></div>
-          <div class="cv-row"><span class="yr">2008 – 2013</span><span class="what">BS, Integrative Biology<small>University of California, Berkeley</small></span></div>
+          <div class="cv-row"><span class="yr">2025 –</span><span data-i18n="cv1" class="what">Assistant Professor<small>Division of AI Data Science, The University of Suwon</small></span></div>
+          <div class="cv-row"><span class="yr">– 2025</span><span data-i18n="cv2" class="what">Postdoctoral Researcher, then Research Assistant Professor<small>Seoul National University College of Medicine</small></span></div>
+          <div class="cv-row"><span class="yr">2014 – 2020</span><span data-i18n="cv3" class="what">PhD, Medical Science<small>Seoul National University College of Medicine</small></span></div>
+          <div class="cv-row"><span class="yr">2008 – 2013</span><span data-i18n="cv4" class="what">BS, Integrative Biology<small>University of California, Berkeley</small></span></div>
         </div>
       </div>
     </div>
 
     <div class="roster-note">
-      <h4>Lab members</h4>
-      <p>Graduate and undergraduate positions are open. Students who join will be listed here — see <a href="#join">Join Us</a> for what the work looks like and who it suits.</p>
+      <h4 data-i18n="people.h4">Lab members</h4>
+      <p data-i18n="people.roster">Graduate and undergraduate positions are open. Students who join will be listed here — see <a href="#join">Join Us</a> for what the work looks like and who it suits.</p>
     </div>
   </section>
 
   <!-- ============ PUBLICATIONS ============ -->
   <section id="publications">
     <div class="sec-head">
-      <h2>Publications</h2>
-      <span class="eyebrow">Selected first-author work</span>
+      <h2 data-i18n="publications.h2">Publications</h2>
+      <span data-i18n="publications.eye" class="eyebrow">Selected first-author work</span>
     </div>
 
     <div class="pub">
@@ -684,7 +693,7 @@
     </div>
 
     <details class="more-pubs">
-      <summary>Show 5 earlier papers, 2018–2020</summary>
+      <summary data-i18n="pubs.more">Show 5 earlier papers, 2018–2020</summary>
     <div class="pub">
       <span class="yr">2020</span>
       <div class="pub-body">
@@ -731,42 +740,42 @@
     </details>
     </div>
 
-    <p class="pub-note">These are first-author papers. A full list, including collaborative work and book chapters, is on the <a href="https://www.suwon.ac.kr/mainHp/prointro/detail.html?eno=1255130">University of Suwon faculty page</a> and in <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Kim+Soon-Chan%5BAuthor%5D">PubMed</a>.</p>
+    <p data-i18n="pubs.note" class="pub-note">These are first-author papers. A full list, including collaborative work and book chapters, is on the <a href="https://www.suwon.ac.kr/mainHp/prointro/detail.html?eno=1255130">University of Suwon faculty page</a> and in <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Kim+Soon-Chan%5BAuthor%5D">PubMed</a>.</p>
   </section>
 
   <!-- ============ PHOTOS ============ -->
   <section id="photos">
     <div class="sec-head">
-      <h2>Photos</h2>
-      <span class="eyebrow">Life in the lab</span>
+      <h2 data-i18n="photos.h2">Photos</h2>
+      <span data-i18n="photos.eye" class="eyebrow">Life in the lab</span>
     </div>
 
-    <p class="photo-intro">Photographs of the group and the workspace are being collected and will appear here.</p>
+    <p data-i18n="photos.intro" class="photo-intro">Photographs of the group and the workspace are being collected and will appear here.</p>
 
     <div class="gallery">
       <figure class="slot">
-        <div class="frame"><span>Photo</span></div>
-        <figcaption>The group</figcaption>
+        <div class="frame"><span data-i18n="photos.ph">Photo</span></div>
+        <figcaption data-i18n="photo1">The group</figcaption>
       </figure>
       <figure class="slot">
-        <div class="frame"><span>Photo</span></div>
-        <figcaption>The office, Global Business Building</figcaption>
+        <div class="frame"><span data-i18n="photos.ph">Photo</span></div>
+        <figcaption data-i18n="photo2">The office, Global Business Building</figcaption>
       </figure>
       <figure class="slot">
-        <div class="frame"><span>Photo</span></div>
-        <figcaption>At the bench, Cancer Research Institute</figcaption>
+        <div class="frame"><span data-i18n="photos.ph">Photo</span></div>
+        <figcaption data-i18n="photo3">At the bench, Cancer Research Institute</figcaption>
       </figure>
       <figure class="slot">
-        <div class="frame"><span>Photo</span></div>
-        <figcaption>Conferences and talks</figcaption>
+        <div class="frame"><span data-i18n="photos.ph">Photo</span></div>
+        <figcaption data-i18n="photo4">Conferences and talks</figcaption>
       </figure>
       <figure class="slot">
-        <div class="frame"><span>Photo</span></div>
-        <figcaption>Teaching and workshops</figcaption>
+        <div class="frame"><span data-i18n="photos.ph">Photo</span></div>
+        <figcaption data-i18n="photo5">Teaching and workshops</figcaption>
       </figure>
       <figure class="slot">
-        <div class="frame"><span>Photo</span></div>
-        <figcaption>Lab dinners</figcaption>
+        <div class="frame"><span data-i18n="photos.ph">Photo</span></div>
+        <figcaption data-i18n="photo6">Lab dinners</figcaption>
       </figure>
     </div>
   </section>
@@ -774,25 +783,25 @@
   <!-- ============ JOIN US ============ -->
   <section id="join">
     <div class="sec-head">
-      <h2>Join Us</h2>
-      <span class="eyebrow">Graduate &amp; undergraduate positions</span>
+      <h2 data-i18n="join.h2">Join Us</h2>
+      <span data-i18n="join.eye" class="eyebrow">Graduate &amp; undergraduate positions</span>
     </div>
 
     <div class="join-grid">
       <div class="join-prose">
-        <p>We work with real clinical data, so the interesting part of the job is rarely the model. It is deciding what a number means, and when the honest answer is that the data cannot tell.</p>
-        <p>You need neither a biology degree nor strong programming to start, only the willingness to grow into both. Projects span organoid and biopsy transcriptomics, deep learning on pathology slides, and bacterial genomics.</p>
+        <p data-i18n="join.p1">We work with real clinical data, so the interesting part of the job is rarely the model. It is deciding what a number means, and when the honest answer is that the data cannot tell.</p>
+        <p data-i18n="join.p2">You need neither a biology degree nor strong programming to start, only the willingness to grow into both. Projects span organoid and biopsy transcriptomics, deep learning on pathology slides, and bacterial genomics.</p>
       </div>
 
       <div class="looking">
-        <h4>What helps</h4>
+        <h4 data-i18n="join.h4">What helps</h4>
         <ul>
-          <li><b>Python or R</b>, enough to write your own analysis.</li>
-          <li><b>Statistics you can defend.</b></li>
-          <li><b>Curiosity about the biology.</b></li>
-          <li><b>Care with detail</b>: most errors are bookkeeping errors.</li>
+          <li data-i18n="join.l1"><b>Python or R</b>, enough to write your own analysis.</li>
+          <li data-i18n="join.l2"><b>Statistics you can defend.</b></li>
+          <li data-i18n="join.l3"><b>Curiosity about the biology.</b></li>
+          <li data-i18n="join.l4"><b>Care with detail</b>: most errors are bookkeeping errors.</li>
         </ul>
-        <p class="apply">To apply, email a short note on what you would like to work on, with a CV or transcript. Undergraduate interns are welcome.</p>
+        <p data-i18n="join.apply" class="apply">To apply, email a short note on what you would like to work on, with a CV or transcript. Undergraduate interns are welcome.</p>
       </div>
     </div>
   </section>
@@ -800,44 +809,167 @@
   <!-- ============ CONTACT ============ -->
   <section id="contact">
     <div class="sec-head">
-      <h2>Contact</h2>
-      <span class="eyebrow">Collaboration &amp; inquiries</span>
+      <h2 data-i18n="contact.h2">Contact</h2>
+      <span data-i18n="contact.eye" class="eyebrow">Collaboration &amp; inquiries</span>
     </div>
 
     <div class="contact-grid">
       <div class="cblock">
-        <span class="clabel">Email</span>
+        <span data-i18n="c.email" class="clabel">Email</span>
         <a href="mailto:soonchan.kim@suwon.ac.kr">soonchan.kim@suwon.ac.kr</a>
-        <span class="clabel" style="padding-top:14px;">Phone</span>
+        <span data-i18n="c.phone" class="clabel" style="padding-top:14px;">Phone</span>
         <a href="tel:+820312202479">031-220-2479</a>
-        <span class="clabel" style="padding-top:14px;">Code</span>
+        <span data-i18n="c.code" class="clabel" style="padding-top:14px;">Code</span>
         <a href="https://github.com/Soonlab">github.com/Soonlab</a>
       </div>
       <div class="cblock">
-        <span class="clabel">Office</span>
-        <address>
+        <span data-i18n="c.office" class="clabel">Office</span>
+        <address data-i18n="c.addr">
           Global Business Building, Room 901<br>
           Division of AI Data Science<br>
           College of Information and Communication Technology<br>
           The University of Suwon<br>
           Hwaseong, Gyeonggi-do, Republic of Korea
         </address>
-        <span class="clabel" style="padding-top:14px;">Faculty page</span>
+        <span data-i18n="c.faculty" class="clabel" style="padding-top:14px;">Faculty page</span>
         <a href="https://www.suwon.ac.kr/mainHp/prointro/detail.html?eno=1255130">suwon.ac.kr</a>
       </div>
     </div>
 
-    <footer>
+    <footer data-i18n="c.footer">
       We are glad to hear from clinical groups with paired pre- and on-treatment sampling. Analysis code is released with each manuscript.
     </footer>
   </section>
 
   <div class="endmark">
     <svg viewBox="0 0 64 64" aria-hidden="true"><use href="#lab-logo"/></svg>
-    <span>Translational Bioinformatics Lab · The University of Suwon</span>
+    <span data-i18n="endmark">Translational Bioinformatics Lab · The University of Suwon</span>
   </div>
 
 </div>
+
+<script>
+  /* language: English lives in the markup, Korean in this dictionary */
+  (function(){
+    var KO = {
+ "nav.news": "뉴스",
+ "nav.goal": "연구 목표",
+ "nav.people": "구성원",
+ "nav.pubs": "논문",
+ "nav.photos": "사진",
+ "nav.join": "함께하기",
+ "nav.contact": "연락처",
+ "nav.theme": "테마",
+ "hero.h1": "중개생물정보학<br><span>연구실</span>",
+ "hero.sub": "Translational Bioinformatics Lab · Division of AI Data Science, The University of Suwon",
+ "hero.lead": "<em>종양의 무엇이 환자의 치료 반응을 말해 줄까요?</em> 우리는 그 답을 환자유래 모델, 임상 생검, 혈액과 장내 미생물에서 찾습니다.",
+ "hero.m1": "AI데이터사이언스부",
+ "hero.m2": "정보통신대학",
+ "hero.m3": "수원대학교, 경기도 화성시",
+ "slide1.t": "환자유래 암 모델",
+ "slide1.l": "한 종양의 여러 영역이 줄기 변이는 공유하지만 같은 약물에 다르게 반응한다 · <a href=\"https://doi.org/10.1002/advs.202103360\">Kim et al., Adv Sci 2022</a> 참조",
+ "slide2.t": "치료 반응 예측",
+ "slide2.l": "치료 전 발현은 우연 수준에 가깝고, 치료 중 변화는 한 방향을 가리킨다",
+ "slide3.t": "혈액과 장에서 종양 읽기",
+ "slide3.l": "장·혈액·혈장이 함께 움직인다: 인과가 아닌 연관",
+ "slide4.t": "다중모달 기계학습, 그리고 검증",
+ "slide4.l": "네 가지 데이터를 융합해 약물 감수성을 예측하고, 그 결과를 감사한다",
+ "slide5.t": "병원 밖의 유전체",
+ "slide5.l": "폐기물 메타게놈에서 탄산염을 침전시키는 세균을 찾다",
+ "news.h2": "뉴스",
+ "news.eye": "과제 · 논문 · 구성원 소식",
+ "news1.t": "<span class=\"badge\">과제</span>한국연구재단 우수연구-핵심연구(기본연구B) 과제 선정 (2026.09.01 – 2029.08.31)",
+ "news1.d": "<em>국소진행성 직장암 전체선행화학요법 반응 예측을 위한 치료 전 생검 및 다중시점 오믹스 기반 동적 반응지도 구축</em>",
+ "goal.h2": "연구 목표",
+ "goal.eye": "우리가 알아내려는 것",
+ "goal.p1": "두 환자가 같은 암 치료를 받습니다. 한 종양은 사라지고, 다른 종양은 거의 변하지 않습니다. 우리의 목표는 두 환자를 미리 구분해 주는 측정값을 찾는 것이며, 동시에 주어진 데이터에 그런 측정값이 없을 때는 그 사실을 분명히 말하는 것입니다.",
+ "goal.pull": "한 코호트에서는 반응군을 가르고 다음 코호트에서는 실패하는 시그니처는 약한 바이오마커가 아닙니다. 대개 질문을 잘못된 시점에 던졌거나, 잘못된 측정값을 골랐다는 신호입니다.",
+ "goal.p3": "우리는 지난 10년간 대장암·췌장암·유방암·뇌종양의 환자유래 오가노이드와 세포주라는 재료를 만들어 왔고, 이제 그 모델이 무엇을 예측할 수 있고 무엇을 예측할 수 없는지 묻습니다. 시그니처가 재현되지 않으면, 그것이 곧 결과가 됩니다.",
+ "theme1.label": "<a class=\"idx\" href=\"#slide-1\" data-slide=\"0\">주제 01 · 그림 보기 ↑</a>환자유래 암 모델",
+ "theme1.p": "환자 밖에서 오가노이드와 세포주로 키운 종양을 원래 조직과 대조해 특성화하고, 약물과 방사선으로 시험한 뒤, 바이오뱅크에 보관하고 공유합니다.",
+ "theme2.label": "<a class=\"idx\" href=\"#slide-2\" data-slide=\"1\">주제 02 · 그림 보기 ↑</a>치료 반응 예측",
+ "theme2.p": "직장암에서 짝지은 생검, 방사선을 조사한 오가노이드, 공개 코호트는 반응 신호가 어디에 있는지 보여 줍니다. 흔히 가정하는 치료 전 발현보다는, 치료 중의 변화에 더 많이 있습니다.",
+ "theme3.label": "<a class=\"idx\" href=\"#slide-3\" data-slide=\"2\">주제 03 · 그림 보기 ↑</a>혈액과 장에서 종양 읽기",
+ "theme3.p": "치료받지 않은 같은 환자에서 얻은 장·구강 미생물, 혈액 전사체, 혈장 무세포 DNA로, 액체생검이 종양을 말하는지 아니면 종양을 지닌 숙주를 말하는지 알아봅니다.",
+ "theme4.label": "<a class=\"idx\" href=\"#slide-4\" data-slide=\"3\">주제 04 · 그림 보기 ↑</a>다중모달 기계학습, 그리고 검증",
+ "theme4.p": "변이·발현·단백질·조직 영상을 융합해 약물 감수성을 예측하는 교차 어텐션 모델, 그리고 그에 따르는 감사: 라벨은 우리가 가정한 뜻을 갖는가, 선형 기준선이 이기는 지점은 어디인가?",
+ "theme5.label": "<a class=\"idx\" href=\"#slide-5\" data-slide=\"4\">주제 05 · 그림 보기 ↑</a>병원 밖의 유전체",
+ "theme5.p": "생물학이 흥미로운 곳이면 어디든 같은 유전체학을 적용합니다. 축산 폐기물 메타게놈의 탄산염 침전 세균, 그리고 폴리페놀 처리 아래의 식물 뿌리 전사체.",
+ "people.h2": "구성원",
+ "people.eye": "연구책임자",
+ "people.name": "김순찬 <span class=\"mono\" style=\"font-size:.8rem;color:var(--faint);\">Soon-Chan Kim, PhD</span>",
+ "people.title": "조교수 · AI데이터사이언스부<br>수원대학교",
+ "people.bio": "김순찬은 임상 종양학 데이터와 전산생물학이 만나는 지점에서 연구합니다. 서울대학교 의과대학 암연구소와 한국세포주은행에서 10년간 환자유래 암 세포주와 오가노이드를 수립했고, 2025년 수원대학교에 부임했습니다. 현재 서울대학교병원 임상 연구진과 함께 다중오믹스와 기계학습을 치료 반응 연구에 적용하고 있으며, 한국세포주연구재단 학술이사를 맡고 있습니다.",
+ "cv1": "조교수<small>수원대학교 AI데이터사이언스부</small>",
+ "cv2": "박사후연구원, 이후 연구조교수<small>서울대학교 의과대학</small>",
+ "cv3": "의과학 박사<small>서울대학교 의과대학</small>",
+ "cv4": "통합생물학 학사<small>캘리포니아대학교 버클리</small>",
+ "people.h4": "연구실 구성원",
+ "people.roster": "대학원생과 학부생을 모집하고 있습니다. 합류하는 학생은 이곳에 소개됩니다. 어떤 일을 하게 되는지, 누구에게 맞는지는 <a href=\"#join\">함께하기</a>를 보세요.",
+ "publications.h2": "논문",
+ "publications.eye": "주요 제1저자 논문",
+ "pubs.more": "2018–2020년 논문 5편 더 보기",
+ "pubs.note": "위 목록은 제1저자 논문입니다. 공동연구와 저서를 포함한 전체 목록은 <a href=\"https://www.suwon.ac.kr/mainHp/prointro/detail.html?eno=1255130\">수원대학교 교수 소개 페이지</a>와 <a href=\"https://pubmed.ncbi.nlm.nih.gov/?term=Kim+Soon-Chan%5BAuthor%5D\">PubMed</a>에 있습니다.",
+ "photos.h2": "사진",
+ "photos.eye": "연구실의 일상",
+ "photos.intro": "연구실과 구성원 사진을 모으고 있으며, 준비되는 대로 이곳에 올립니다.",
+ "photos.ph": "사진",
+ "photo1": "연구실 구성원",
+ "photo2": "연구실, 글로벌경상관",
+ "photo3": "실험대에서, 암연구소",
+ "photo4": "학회와 발표",
+ "photo5": "강의와 워크숍",
+ "photo6": "연구실 회식",
+ "join.h2": "함께하기",
+ "join.eye": "대학원생 · 학부생 모집",
+ "join.p1": "우리는 실제 임상 데이터를 다루므로, 이 일에서 흥미로운 부분은 모델 자체인 경우가 드뭅니다. 숫자 하나가 무엇을 뜻하는지, 그리고 데이터로는 알 수 없다는 것이 정직한 답인 때가 언제인지를 판단하는 일입니다.",
+ "join.p2": "시작하는 데 생물학 학위도, 뛰어난 프로그래밍 실력도 필요하지 않습니다. 둘 다 배워 나가겠다는 의지만 있으면 됩니다. 프로젝트는 오가노이드·생검 전사체, 병리 슬라이드 딥러닝, 세균 유전체학에 걸쳐 있습니다.",
+ "join.h4": "도움이 되는 것",
+ "join.l1": "<b>Python 또는 R</b>, 자신의 분석을 직접 쓸 수 있을 정도.",
+ "join.l2": "<b>스스로 설명할 수 있는 통계.</b>",
+ "join.l3": "<b>생물학에 대한 호기심.</b>",
+ "join.l4": "<b>세부에 대한 꼼꼼함</b>: 오류 대부분은 장부 정리 오류입니다.",
+ "join.apply": "지원하려면 어떤 일을 하고 싶은지 짧은 글과 함께 이력서 또는 성적표를 이메일로 보내 주세요. 학부 인턴도 환영합니다.",
+ "contact.h2": "연락처",
+ "contact.eye": "공동연구 및 문의",
+ "c.email": "이메일",
+ "c.phone": "전화",
+ "c.code": "코드",
+ "c.office": "연구실",
+ "c.faculty": "교수 소개",
+ "c.addr": "\n          글로벌경상관 901호<br>\n          AI데이터사이언스부<br>\n          정보통신대학<br>\n          수원대학교<br>\n          경기도 화성시\n        ",
+ "c.footer": "\n      치료 전과 치료 중 시료를 짝지어 확보한 임상 연구진의 연락을 환영합니다. 분석 코드는 각 논문과 함께 공개합니다.\n    ",
+ "endmark": "중개생물정보학 연구실 · 수원대학교"
+};
+    var root = document.documentElement, btn = document.getElementById('lang-toggle');
+    var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-i18n]'));
+    function apply(lang){
+      nodes.forEach(function(el){
+        var k = el.getAttribute('data-i18n');
+        if (!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+        el.innerHTML = (lang === 'ko' && KO[k] != null) ? KO[k] : el.getAttribute('data-en');
+      });
+      root.setAttribute('lang', lang);
+      document.title = lang === 'ko' ? '중개생물정보학 연구실 · 수원대학교' : 'Translational Bioinformatics Lab';
+      if (btn) {
+        btn.textContent = lang === 'ko' ? 'English' : 'Korean';
+        btn.setAttribute('aria-label', lang === 'ko' ? '영어로 보기' : 'View in Korean');
+      }
+    }
+    var lang = 'en';
+    try {
+      var q = new URLSearchParams(location.search).get('lang');
+      var st = localStorage.getItem('tbl-lang');
+      if (q === 'ko' || q === 'en') lang = q; else if (st === 'ko' || st === 'en') lang = st;
+    } catch (e) {}
+    if (lang === 'ko') apply('ko');
+    if (btn) btn.addEventListener('click', function(){
+      lang = (root.getAttribute('lang') === 'ko') ? 'en' : 'ko';
+      apply(lang);
+      try { localStorage.setItem('tbl-lang', lang); } catch (e) {}
+    });
+  })();
+</script>
 
 <script>
   (function(){
@@ -920,11 +1052,13 @@
       box.className = 'lightbox';
       var img = document.createElement('img');
       img.src = b.getAttribute('data-full');
-      img.alt = b.getAttribute('data-cap') || '';
+      var ko = document.documentElement.lang === 'ko';
+      var capText = (ko && b.getAttribute('data-cap-ko')) || b.getAttribute('data-cap') || '';
+      img.alt = capText;
       var close = document.createElement('button');
-      close.className = 'close'; close.type = 'button'; close.textContent = 'Close';
+      close.className = 'close'; close.type = 'button'; close.textContent = ko ? '닫기' : 'Close';
       var cap = document.createElement('div');
-      cap.className = 'cap'; cap.textContent = b.getAttribute('data-cap') || '';
+      cap.className = 'cap'; cap.textContent = capText;
       box.appendChild(img); box.appendChild(close); box.appendChild(cap);
       box.addEventListener('click', function(ev){ if (ev.target !== img) closeBox(); });
       document.body.appendChild(box);
